@@ -29,7 +29,7 @@ $operation = "";
                 $lab_id = $_GET["id"];
                 $status = "Pending";
 
-                $sql = "INSERT INTO request_asset (req_name, req_status, quantity_asset, lab_id, req_date) VALUES ('$name' , '$status','$quant', '$lab_id', '$currentDateTime')";
+                $sql = "INSERT INTO request_asset (req_name, req_status, quantity_asset, lab_id, req_date) VALUES ('$name' , '$status','$quant', '$lab_id ', '$currentDateTime')";
                 $result = $connection->query($sql);
             }
 
@@ -108,6 +108,8 @@ include "templates/header.php";
             <div class="display">
                 <div class = "laboratoryName">
                     <h1 id = "insidelaboratoryName"></h1>
+                    
+                    <h3>LIST OF ASSET</h3>
                 </div><br><br>
                 <button id = "requestBtn">REQUEST ASSETS</button>
                 <button id = "requestBtnAssView">SHOW ASSET REQUEST</button>

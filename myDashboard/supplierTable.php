@@ -56,9 +56,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
             
             
-            $sqlSupname = "SELECT * FROM supplier where sup_fname = '$fname' AND sup_lname = '$lname'";
+            $sqlSupname = "SELECT * FROM supplier where sup_fname = '$fname' AND sup_lname = '$lname' AND company_name = '$company' AND email = '$email' AND address = '$address' AND contact_num = '$contact_num'";
 
             $resultSupName = $connection->query($sqlSupname);
+
 
             if ($resultSupName->num_rows == 0) {
                 
@@ -72,6 +73,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             } else {
                 echo "Full name already exists!";
             }
+
+            
 
            
 
@@ -115,7 +118,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 <div class = "suppAddTitle">
                     <h2>LIST OF SUPPLIERS</h2>
                 </div>
-                <button id="addButton">Add</button>
+                <button id="addButton">Add Supplier</button>
 
                 <div id="popupForm" class="popup-form">
                     

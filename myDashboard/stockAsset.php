@@ -34,7 +34,7 @@ try {
             $description = $_POST["description"];
             $assign_lab = $_POST["assigned"];
 
-                $sql = "INSERT INTO assets (asset_type, asset_brand, asset_status, asset_desc, asset_quant, assign_lab, sup_id) VALUES ('$type', '$brand', '$status', '$description', '$quant', 'Not Assigned', '$sup_id')";
+                $sql = "INSERT INTO assets (asset_type, asset_brand, asset_status, asset_desc, asset_quant , sup_id) VALUES ('$type', '$brand', '$status', '$description', '$quant', '$sup_id')";
                 $result = $connection->query($sql);
     
                 if(!$result){
@@ -102,7 +102,7 @@ try {
                 }
 
                 
-                    $sqlUpdateLab = "UPDATE assets SET asset_quant = '$numberOfAsset', assign_lab = '$nameLaboratory' WHERE asset_id = '$asset_id'";
+                    $sqlUpdateLab = "UPDATE assets SET asset_quant = '$numberOfAsset' WHERE asset_id = '$asset_id'";
 
                     if ($connection->query($sqlUpdateLab) === TRUE) {
                     } else {

@@ -90,7 +90,7 @@ if ($resultAdmin) {
 
                         <div class = "totalAssetTableDashboard" id = "totalAssetTableDashboard">
                         <button id = "viewAllAssetDashboard">View All</button>
-                        <h4 id = "assetTotalTitleDashboard">TOTAL ASSET</h4>
+                        <h4 id = "assetTotalTitleDashboard">ASSETS</h4>
                             <table class = "assetTableDashboard" >
 
                                 <thead >
@@ -136,7 +136,7 @@ if ($resultAdmin) {
                         <!-- <button id = "viewAllAssetDashboard">VIEW ALL</button> -->
                         <div class = "totalLaboratoryTableDashboard">
                         <button id = "viewAllAssetDashboard">View All</button>
-                        <h4 id = "assetTotalTitleDashboard">TOTAL LABORATORY</h4>
+                        <h4 id = "assetTotalTitleDashboard">LABORATORY</h4>
                             <table  id = "laboratoryTotalDashboard" >
 
                                 <thead >
@@ -180,7 +180,7 @@ if ($resultAdmin) {
                     <div class = "secondDashboardTableContainer">
                         <div class = "totalAdminTableDashboard"> 
                             <button id = "viewAllAssetDashboard">View All</button>
-                        <h4 id = "assetTotalTitleDashboard">TOTAL ADMIN</h4>
+                        <h4 id = "assetTotalTitleDashboard">ADMIN</h4>
                             <table class = "adminTableDashboard" >
 
                                 <thead >
@@ -222,7 +222,7 @@ if ($resultAdmin) {
                             </table>
                         </div>
                         <div class = "totalSupplierDashboard"><button id = "viewAllAssetDashboard">View All</button>
-                        <h4 id = "assetTotalTitleDashboard">TOTAL SUPPLIER</h4>
+                        <h4 id = "assetTotalTitleDashboard">SUPPLIER</h4>
                             <table class = "totalSupplierDashboardTable" >
 
                                 <thead >

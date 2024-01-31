@@ -226,64 +226,64 @@ try {
                         <br><br><br>
                     
 
-                        <table class = "stocksAssetDisplay" id = "assetTable">
+                            <table class = "stocksAssetDisplay" id = "assetTable">
 
-                            <thead>
-                                <tr>
-                                    <th id = "actionEd">ID</th>
-                                    <th id = "actionEd">NAME</th>
-                                    <th id = "actionEd">STATUS</th>
-                                    <th id = "actionEd">QUANTITY</th>
-                                    <th id = "actionEd">LABORATORY NAME</th>
-                                    <th id = "actionEd">REQUEST DATE</th>
-                                    <!-- <th id = "actionEd">ACTIONS</th> -->
-                                </tr>
-                            </thead>
+                                <thead>
+                                    <tr>
+                                        <th id = "actionEd">ID</th>
+                                        <th id = "actionEd">NAME</th>
+                                        <th id = "actionEd">STATUS</th>
+                                        <th id = "actionEd">QUANTITY</th>
+                                        <th id = "actionEd">LABORATORY NAME</th>
+                                        <th id = "actionEd">REQUEST DATE</th>
+                                        <!-- <th id = "actionEd">ACTIONS</th> -->
+                                    </tr>
+                                </thead>
 
-                            <tbody  >
+                                <tbody  >
 
-                           
-                    
-                                <?php
-                                require_once('db_connector.php');
+                            
+                        
+                                    <?php
+                                    require_once('db_connector.php');
 
 
-                                    $sql = "SELECT request_asset.req_id as req_id, request_asset.req_name as req_name, request_asset.req_status as req_status, request_asset.quantity_asset as quantity, request_asset.lab_id as lab_id, request_asset.req_date as req_date, laboratories.lab_name as labname FROM request_asset INNER JOIN laboratories ON request_asset.lab_id = laboratories.lab_id";
-                                   
-                                    $result = $connection->query($sql);
-
-                                    if(!$result){
-                                        die("Invalid query: ". $connection->error);
-                                    }
-
-                                    while($row = $result->fetch_assoc()){
-                                        echo "
-                                        <tbody  class = 'table-row'>
-                                            <td  id = 'laboratoryRow'>$row[req_id]</td>
-                                            <td id = 'laboratoryRow' >$row[req_name]</td>
-                                            <td  id = 'laboratoryRow'>
-                                           
-                                                <select  data-id ='$row[req_id]' class='status-dropdown' id='reqAssetStat'>
-                                                   <option >$row[req_status]</option>
-                                                   <option value = 'Pending'>Pending</option>
-                                                   <option value = 'Processing'>Processing</option>
-                                                   <option value = 'Cancelled'>Cancelled</option>
-                                                </select>
-                                           
-                                            </td>
-                                            <td  id = 'laboratoryRow'>$row[quantity]</td>
-                                            <td  id = 'laboratoryRow'>$row[labname]</td>
-                                            <td  id = 'laboratoryRow'>$row[req_date]</td>
-                                        ";
-                                        echo '</tr>';
-                                    }
+                                        $sql = "SELECT request_asset.req_id as req_id, request_asset.req_name as req_name, request_asset.req_status as req_status, request_asset.quantity_asset as quantity, request_asset.lab_id as lab_id, request_asset.req_date as req_date, laboratories.lab_name as labname FROM request_asset INNER JOIN laboratories ON request_asset.lab_id = laboratories.lab_id";
                                     
-                                   
-                                ?>
-                    
-                            </tbody>
+                                        $result = $connection->query($sql);
 
-                        </table>
+                                        if(!$result){
+                                            die("Invalid query: ". $connection->error);
+                                        }
+
+                                        while($row = $result->fetch_assoc()){
+                                            echo "
+                                            <tbody  class = 'table-row'>
+                                                <td class = 'reqTableRow' >$row[req_id]</td>
+                                                <td class = 'reqTableRow' >$row[req_name]</td>
+                                                <td class = 'reqTableRow'  class = 'reqTableRow' id = 'statusReqTable' >
+                                            
+                                                    <select  data-id ='$row[req_id]' class='status-dropdown' id='reqAssetStat' >
+                                                    <option >$row[req_status]</option>
+                                                    <option value = 'Pending'>Pending</option>
+                                                    <option id = 'processingOption'value = 'Processing'>Processing</option>
+                                                    <option value = 'Cancelled'>Cancelled</option>
+                                                    </select>
+                                            
+                                                </td>
+                                                <td class = 'reqTableRow' id = ''>$row[quantity]</td>
+                                                <td class = 'reqTableRow' id = ''>$row[labname]</td>
+                                                <td class = 'reqTableRow' id = ''>$row[req_date]</td>
+                                            ";
+                                            echo '</tr>';
+                                        }
+                                        
+                                    
+                                    ?>
+                        
+                                </tbody>
+
+                            </table>
                 </div>
             </div>
         </div>
@@ -291,31 +291,7 @@ try {
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script>
-
-        // function handleStatusChange(selectElement) {
-        //     // Get the selected value
-        //     var selectedValue = selectElement.value;
-
-        //     // Log the selected value to the console
-        //     console.log("Selected Status:", selectedValue);
-        //     // let idReq = getAttribute('data-id');
-        //     // console.log("Selected Status:", selectedValue);
-        //     var xhr = new XMLHttpRequest();
-        //     xhr.open("POST", "", true);
-        //     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        //     xhr.send("stats="+selectedValue);
-
-        //     xhr.onreadystatechange = function() {
-        //         if (xhr.readyState === XMLHttpRequest.DONE) {
-        //             if (xhr.status === 200) {
-        //                 // console.log(xhr.responseText);
-        //                 // location.reload();
-        //             } else {
-        //                 console.error('There was a problem with the request.');
-        //             }
-        //         }
-        //     };
-        // }
+        
 
         nameOfAssetReqs.addEventListener("change" , function(){
             let change = document.getElementById("nameOfAssetReqs").value;
@@ -360,22 +336,24 @@ try {
             });
             statSelect.forEach(function(statupdate) {
                 statupdate.addEventListener('change', function () {
+                    let reqStatus = document.getElementById("reqAssetStat");
+                    
                     if (event.target.classList.contains('status-dropdown')){
                         var selectedValue = event.target.value;
-                        console.log(selectedValue);
+                        // console.log(selectedValue);
                     }
                         let idReq = this.getAttribute('data-id');
                         var xhr = new XMLHttpRequest();
                         xhr.open("POST", "", true);
                         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                        console.log(idReq);
+                        // console.log(idReq);
                         xhr.send("status="+selectedValue+"&&reqId="+idReq);
 
                         xhr.onreadystatechange = function() {
                             if (xhr.readyState === XMLHttpRequest.DONE) {
                                 if (xhr.status === 200) {
                                     // console.log(xhr.responseText);
-                                    location.reload();
+                                    // location.reload();
                                 } else {
                                     console.error('There was a problem with the request.');
                                 }

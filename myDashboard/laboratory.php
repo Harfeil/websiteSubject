@@ -95,7 +95,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 
 
-$sqlAdmin = "SELECT admin_id, CONCAT(admin_fname, ' ', admin_lname) as full_name FROM admins";
+$sqlAdmin = "SELECT admin_id, CONCAT(admin_fname, ' ', admin_lname) as full_name FROM admins WHERE admin_role = 'Instructor'";
 $resultAdmin = $connection->query($sqlAdmin);
 ?>
 
@@ -184,6 +184,7 @@ $resultAdmin = $connection->query($sqlAdmin);
                                 <th id = "actionEd">LABORATORY NAME</th>
                                 <th id = "actionEd">ADMIN</th>
                                 <th id = "actionEd">DATE CREATED</th>
+                                <th id = "actionEd" class = "laboratoryAction">ACTIONS</th>
                             </tr>
                         </thead>
 

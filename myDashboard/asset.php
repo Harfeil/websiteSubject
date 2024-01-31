@@ -9,7 +9,7 @@
                 <a class="logout"><ion-icon name="log-out-outline"></ion-icon></a>
             </div>
             <div class="display">
-                <h2>LIST OF ASSET</h2>
+                <h2 class = "listAssetTitle">LIST OF ASSET</h2>
                 <button id = "viewStock" >VIEW STOCKS</button>
 
                 <div id="popupFormAssetDisplay" class="popup-formAssetDisplay">

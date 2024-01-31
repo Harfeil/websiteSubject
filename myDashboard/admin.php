@@ -102,7 +102,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 <div class = "suppAddTitle">
                     <h2>LIST OF ADMINS</h2>
                 </div>
-                <button id="addButton">Add</button>
 
                 <div id="popupForm" class="popup-formAdmin">
                     
@@ -157,7 +156,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
                 <div class="adminTableDisplay">
 
-                    <table class = "" >
+                    <table class = "adminTableDisplay" >
 
                         <thead >
                             <tr>
@@ -175,7 +174,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                                require_once('db_connector.php');
 
 
-                                $sql = "SELECT * From admins";
+                                $sql = "SELECT * From admins WHERE admin_role = 'Instructor'";
                                 $result = $connection->query($sql);
 
                                 if(!$result){
@@ -190,10 +189,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                                         <td   id = 'laboratoryRow'>$row[admin_lname]</td>
                                         <td   id = 'laboratoryRow'>$row[admin_num]</td>
                                         <td id = 'laboratoryRow'>$row[admin_email]</td>
-                                        <td style='border: none;' id = 'laboratoryRow'>
-                                            <button data-adminId = '$row[admin_id]' data-adminEmail = '$row[admin_email]' data-adminFname = '$row[admin_fname]' data-adminNumber = '$row[admin_num]' data-adminLname = '$row[admin_lname]' class = 'editAdminBtn' id = 'editAdminBtn'>Edit</button>
-                                            <button  data-adminId = '$row[admin_id]' class = 'deleleteAdminBtn' id = 'deleleteAdminBtn'>Delete</button>
-                                        </td> 
                                     ";
                                     echo '</tr>';
                                 }
@@ -348,15 +343,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             allButtons.forEach(function(button) {
                 button.disabled = true;
             });
-            if(editable === false){
-                titleOfForm.textContent = "Add Admin Form";
-                AdminFNameInput.name = "admin_fname";
-                AdminLNameInput.name = "admin_lname";
-                contact_numInput.name = "admin_num";
-                emailInput.name = "admin_email";
-                typePost.value = "add";
-                editable = true;
-            }
+            titleOfForm.textContent = "Add Admin Form";
+            AdminFNameInput.name = "admin_fname";
+            AdminLNameInput.name = "admin_lname";
+            contact_numInput.name = "admin_num";
+            emailInput.name = "admin_email";
+            typePost.value = "add";
         });
 
         document.getElementById('myFormSup').addEventListener('submit', function(event) {
