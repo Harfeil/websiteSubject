@@ -84,19 +84,22 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     } while (false);
 
-    if(isset($_POST['id'])) {
-        $id = $_POST['id'];
-        
-        $sql = "DELETE FROM supplier WHERE sup_id = $id";
+   
+}
+
+if(isset($_POST['id'])) {
+    $id = $_POST['id'];
+    echo "asd";
     
-        if ($connection->query($sql) === TRUE) {
-            echo "Record deleted successfully";
-        } else {
-            echo "Error deleting record: " . $connection->error;
-        }
-    
-        $connection->close();
+    $sql = "DELETE FROM supplier WHERE sup_id = $id";
+
+    if ($connection->query($sql) === TRUE) {
+        echo "Record deleted successfully";
+    } else {
+        echo "Error deleting record: " . $connection->error;
     }
+
+    $connection->close();
 }
 
 ?>
@@ -166,7 +169,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     <table class = "supplierTable" >
 
                         <thead >
-                            <tr>
+                            <tr class = "supplierTableHeader">
                                 <th id = "suppCol">ID</th>
                                 <th id = "suppCol">COMPANY NAME</th>
                                 <th id = "suppCol">FIRST NAME</th>
@@ -174,6 +177,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                                 <th id = "suppCol">CONTACT NUMBER</th>
                                 <th id = "suppCol">EMAIL</th>
                                 <th id = "suppCol">ADDRESS</th>
+                                <th id = "suppCol">ACTIONS</th>
                             </tr>
                         </thead>
 
@@ -193,14 +197,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                                 while($row = $result->fetch_assoc()){
                                     echo "
                                     <tbody class = 'table-row'>
-                                        <td    id = 'laboratoryRow'>$row[sup_id]</td>
-                                         <td id = 'laboratoryRow' style = 'padding-left = 400px;'>$row[company_name]</td>
-                                        <td  id = 'laboratoryRow' style = 'padding-left = 400px;'>$row[sup_fname]</td>
-                                        <td   id = 'laboratoryRow'>$row[sup_lname]</td>
-                                        <td  id = 'laboratoryRow'>$row[contact_num]</td>
-                                        <td id = 'laboratoryRow'>$row[email]</td>
-                                        <td  id = 'laboratoryRow'>$row[address]</td>
-                                        <td style='border: none;' id = 'laboratoryRow'>
+                                        <td    id = 'supplierRow'>$row[sup_id]</td>
+                                         <td id = 'supplierRow' style = 'padding-left = 400px;'>$row[company_name]</td>
+                                        <td  id = 'supplierRow' style = 'padding-left = 400px;'>$row[sup_fname]</td>
+                                        <td   id = 'supplierRow'>$row[sup_lname]</td>
+                                        <td  id = 'supplierRow'>$row[contact_num]</td>
+                                        <td id = 'supplierRow'>$row[email]</td>
+                                        <td  id = 'supplierRow'>$row[address]</td>
+                                        <td  id = 'supplierRow'>
                                             <button data-supId = '$row[sup_id]' data-company = '$row[company_name]' data-supFname = '$row[sup_fname]' data-supLname = '$row[sup_lname]' data-supNumber = '$row[contact_num]' data-supEmail = '$row[email]' data-supAddress = '$row[address]' class = 'suppEditBtn'  id = 'suppEditBtn'>Edit</button>
                                             <button data-supId = '$row[sup_id]' class = 'deleteBtnSup' id = 'deleteBtnSup'>Delete</button>
                                         </td> 
@@ -277,7 +281,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             tableRowsDelete.forEach(function(row) {
                 row.addEventListener('click', function() {
                     let id = this.getAttribute('data-supId');
-                    
                     var confirmation = confirm("Confirm Delete?");
                         if (confirmation) {
                             var xhr = new XMLHttpRequest();

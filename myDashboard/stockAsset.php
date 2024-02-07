@@ -20,10 +20,10 @@ try {
 
     if($_SERVER['REQUEST_METHOD'] == 'POST' ){
         
-        $operation = $_POST["postType"];
         do {
 
 
+            $operation = $_POST["postType"];
             if($operation == "add"){
                 
             $type = $_POST["type"];
@@ -56,7 +56,7 @@ try {
                 // header("location: /asset/myDashboard/asset.php");
             }
 
-            if($operation == "update"){
+            if($operation == "Update"){
 
                 $asset_id = $_POST["IdAsset"];
                 $brand = $_POST["brandUpdate"];
@@ -115,8 +115,6 @@ try {
 
 
     }
-
-    $operation = "";
 
     $sqlSupplier = "SELECT sup_id, CONCAT(sup_fname, ' ', sup_lname) as full_name FROM supplier";
     $resultSupplier = $connection->query($sqlSupplier);
@@ -267,7 +265,7 @@ try {
 
                         <div class = "buttonForm">
 
-                            <button type = "submit" id = "submitAssetBtn">Submit</button>
+                            <button type = "submit">Submit</button>
 
                             <button id = "cancelAsset"onclick = "cancelSup()">Cancel</button>
                             
@@ -282,21 +280,17 @@ try {
 
                   
                 
-                    <div class="assetTableDisplay">
-
-                        <br><br><br>
-                    
-
-                        <table class = "stocksAssetDisplay" id = "assetTable">
-
+                    <div class="stocksAssetTableDisplay">
+                        <table class = "stocksTableDisplay" id = "">
                             <thead>
-                                <tr>
-                                    <th id = "actionEd">ID</th>
-                                    <th id = "actionEd">DEVICE TYPE</th>
-                                    <th id = "actionEd">BRAND</th>
-                                    <th id = "actionEd">STATUS</th>
-                                    <th id = "actionEd">STOCKS</th>
-                                    <th id = "actionEd">SUPPLIER NAME</th>
+                                <tr class = "assetStocksHeader">
+                                    <th id = "stocksCol">ID</th>
+                                    <th id = "stocksCol">DEVICE TYPE</th>
+                                    <th id = "stocksCol">BRAND</th>
+                                    <th id = "stocksCol">STATUS</th>
+                                    <th id = "stocksCol">STOCKS</th>
+                                    <th id = "stocksCol">SUPPLIER NAME</th>
+                                    <th id = "stocksCol">ACTIONS</th>
                                     <!-- <th id = "actionEd">ACTIONS</th> -->
                                 </tr>
                             </thead>
@@ -307,7 +301,7 @@ try {
                                 require_once('db_connector.php');
 
 
-                                    $sql = "SELECT assets.sup_id as sup_id, assets.asset_id as asset_id, assets.asset_type as asset_type, assets.asset_status as asset_status, assets.asset_quant as asset_quant,assets.asset_brand as asset_brand, assets.asset_desc as asset_desc, CONCAT(supplier.sup_fname, ' ', supplier.sup_lname) as full_name FROM assets INNER JOIN supplier ON assets.sup_id = supplier.sup_id";
+                                    $sql = "SELECT assets.sup_id as sup_id, assets.asset_id as asset_id, assets.asset_type as asset_type, assets.asset_status as asset_status, assets.asset_quant as asset_quant,assets.asset_brand as asset_brand, assets.asset_desc as asset_desc, CONCAT(supplier.sup_fname, ' ', supplier.sup_lname) as full_name FROM assets INNER JOIN supplier ON assets.sup_id = supplier.sup_id ORDER BY asset_id ASC";
                                    
                                     $result = $connection->query($sql);
 
@@ -318,14 +312,14 @@ try {
                                     while($row = $result->fetch_assoc()){
                                         echo "
                                         <tbody data-assetAydi = '$row[asset_id]' data-assetBrand = '$row[asset_brand]' data-assetDesc = '$row[asset_desc]'  data-assetType = '$row[asset_type]' data-assetQuant = '$row[asset_quant]' data-assetStat = '$row[asset_status]'  data-supId = '$row[sup_id]'  class = 'table-row'>
-                                            <td id = 'laboratoryRow'>$row[asset_id]</td>
-                                            <td  id = 'laboratoryRow'>$row[asset_type]</td>
-                                            <td id = 'laboratoryRow' >$row[asset_brand]</td>
-                                            <td id = 'laboratoryRow'>$row[asset_status]</td>
-                                            <td  id = 'laboratoryRow'>$row[asset_quant]</td>
-                                            <td  id = 'laboratoryRow'>$row[full_name]</td>
-                                            <td  style='border: none;' id = 'laboratoryRow' class = 'actionStockBtn'>
-                                                <button data-assetAydi = '$row[asset_id]'  data-assetDesc = '$row[asset_desc]'  data-assetType = '$row[asset_type]' data-assetQuant = '$row[asset_quant]' data-assetStat = '$row[asset_status]'  data-supId = '$row[sup_id]'  id = 'assignButtonLab' class = 'assignButtonLab'>Assign To</button>
+                                            <td id = 'stocksRow'>$row[asset_id]</td>
+                                            <td  id = 'stocksRow'>$row[asset_type]</td>
+                                            <td id = 'stocksRow' >$row[asset_brand]</td>
+                                            <td id = 'stocksRow'>$row[asset_status]</td>
+                                            <td  id = 'stocksRow'>$row[asset_quant]</td>
+                                            <td  id = 'stocksRow'>$row[full_name]</td>
+                                            <td  style='border: none;' id = 'stocksRow' class = 'actionStockBtn'>
+                                                <button data-desc = '$row[asset_desc]' data-brand = '$row[asset_brand]' data-assetAydi = '$row[asset_id]'  data-assetDesc = '$row[asset_desc]'  data-assetType = '$row[asset_type]' data-assetQuant = '$row[asset_quant]' data-assetStat = '$row[asset_status]'  data-supId = '$row[sup_id]'  id = 'assignButtonLab' class = 'assignButtonLab'>Assign To</button>
                                                 <button  data-assetType = '$row[asset_type]' data-assetQuant = '$row[asset_quant]' data-assetStat = '$row[asset_status]' data-assetAydi = '$row[asset_id]' data-assetSup = '$row[full_name]' data-assetBrand = '$row[asset_brand]' data-assetDesc = '$row[asset_desc]' data-supId = '$row[sup_id]' class = 'editButtonAsset' id = 'editAssetButton'  >Edit Asset</button>
                                                 <input data-asset = '$row[asset_id]' name = 'deleteAsset' class = 'deleteButton'  id = 'deleteButton' type = 'submit' value = 'Delete Asset'>
                                             </td> 
@@ -349,27 +343,7 @@ try {
        
 
         requestAssetBtn.addEventListener("click", function(){
-            window.location.href = "http://localhost/asset/myDashboard/requestAssetTable.php";
-        });
-
-        submitAssetBtn.addEventListener("click", function(){
-            let laboratoryName = this.getAttribute('data-labName');
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "", true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.send("labName=" + laboratoryName);
-
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (xhr.status === 200) {
-                            console.log(xhr.responseText);
-                        
-                    } else {
-                        console.error('There was a problem with the request.');
-                    }
-                }
-            };
-            
+            window.location.href = "http://localhost/asset/myDashboard/assetTableRequest.php";
         });
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -414,7 +388,7 @@ try {
                     h2Content.textContent = "Update Asset Form";
                     laboratory.name = "assignedUpdate";
                     supplier.name = "supplierUpdate";
-                    operationDisplay.value = "update";
+                    operationDisplay.value = "Update";
                     description.name = "descriptionUpdate";
                     idDisplayAsset.name = "IdAsset";
                     idDisplay.style.display = "flex";
@@ -424,6 +398,60 @@ try {
                     assetStatus.name = "statusUpdate";
                     assetQuantity.name = "quantityUpdate";
                     brokenOpt.style.display = "block";
+                });
+            });
+            
+            tableRowsAssign.forEach(function(row) {
+                row.addEventListener('click', function() {
+                    allButtons.forEach(function(button) {
+                        button.disabled = true;
+                    });
+                    let h2Content = document.getElementById
+                    ("titleOfForm");
+                    let typeAsset = document.getElementById("optionsType");
+                    let quantAsset = document.getElementById("quantityField");
+                    let statAsset = document.getElementById("optionsAssets");
+                    let brandAsset = document.getElementById("brandOfAsset");
+                    let descBrand = document.getElementById("description");
+                    let supAsset = document.getElementById("optionsSup");
+                    let assetType = this.getAttribute('data-assetType');
+                    let assetQuant = this.getAttribute('data-assetQuant');
+                    let assetSup = this.getAttribute('data-supId');
+                    let assetStat = this.getAttribute('data-assetStat');
+                    let assetId = this.getAttribute('data-assetAydi');
+                    let brand = this.getAttribute('data-brand');
+                    let description = this.getAttribute('data-desc');
+                    h2Content.textContent = "Assign Asset Form";
+                    popupForm.style.display = 'block';
+                    let assignedLab = document.getElementById("assignedLabOpt");
+                    brandAsset.value = brand;
+                    descBrand.value = description;
+                    idDisplayAsset.value = assetId;
+                    assignedLab.style.display = "block";
+                    typeAsset.value = assetType;
+                    typeAsset.style.pointerEvents = "none";
+                    typeAsset.style.border = "none";
+                    typeAsset.style.cursor = "not-allowed";
+                    quantAsset.value = assetQuant;
+                    statAsset.value = assetStat;
+                    statAsset.style.pointerEvents = "none";
+                    statAsset.style.border = "none";
+                    statAsset.style.cursor = "not-allowed";
+                    supplier.value = assetSup;
+                    supplier.style.pointerEvents = "none";
+                    supplier.style.border = "none";
+                    supplier.style.cursor = "not-allowed";
+                    descBrand.style.pointerEvents = "none";
+                    descBrand.style.border = "none";
+                    descBrand.style.cursor = "not-allowed";
+                    brandAsset.style.pointerEvents = "none";
+                    brandAsset.style.border = "none";
+                    brandAsset.style.cursor = "not-allowed";
+                    operationDisplay.value = "assign";
+                    idDisplayAsset.name = "IdAsset";
+                    idDisplay.style.display = "flex";
+                    idDisplay.style.marginBottom = "20px";
+                    addSuppLink.style.display = "none";
                 });
             });
             tableRowsDelete.forEach(function(row) {
@@ -443,9 +471,6 @@ try {
                                      console.log(xhr.responseText);
                                     var deletedElement = document.getElementById("item_" + id);
                                     location.reload();
-                                    if (deletedElement) {
-                                        deletedElement.remove();
-                                    }
                                 } else {
                                     console.error('There was a problem with the request.');
                                 }
@@ -453,48 +478,6 @@ try {
                         };
                     }
                    
-                });
-            });
-            tableRowsAssign.forEach(function(row) {
-                row.addEventListener('click', function() {
-                    allButtons.forEach(function(button) {
-                        button.disabled = true;
-                    });
-                    let h2Content = document.getElementById
-                    ("titleOfForm");
-                    let typeAsset = document.getElementById("optionsType");
-                    let quantAsset = document.getElementById("quantityField");
-                    let statAsset = document.getElementById("optionsAssets");
-                    let supAsset = document.getElementById("optionsSup");
-                    let assetType = this.getAttribute('data-assetType');
-                    let assetQuant = this.getAttribute('data-assetQuant');
-                    let assetSup = this.getAttribute('data-supId');
-                    let assetStat = this.getAttribute('data-assetStat');
-                    let assetId = this.getAttribute('data-assetAydi');
-                    h2Content.textContent = "Assign Asset Form";
-                    popupForm.style.display = 'block';
-                    let assignedLab = document.getElementById("assignedLabOpt");
-                    idDisplayAsset.value = assetId;
-                    assignedLab.style.display = "block";
-                    typeAsset.value = assetType;
-                    typeAsset.style.pointerEvents = "none";
-                    typeAsset.style.border = "none";
-                    typeAsset.style.cursor = "not-allowed";
-                    quantAsset.value = assetQuant;
-                    statAsset.value = assetStat;
-                    statAsset.style.pointerEvents = "none";
-                    statAsset.style.border = "none";
-                    statAsset.style.cursor = "not-allowed";
-                    supplier.value = assetSup;
-                    supplier.style.pointerEvents = "none";
-                    supplier.style.border = "none";
-                    supplier.style.cursor = "not-allowed";
-                    operationDisplay.value = "assign";
-                    idDisplayAsset.name = "IdAsset";
-                    idDisplay.style.display = "flex";
-                    idDisplay.style.marginBottom = "20px";
-                    submitAssetBtn.id = "assignBtn";
-                    addSuppLink.style.display = "none";
                 });
             });
         });

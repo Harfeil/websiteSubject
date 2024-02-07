@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 11, 2024 at 02:34 AM
+-- Generation Time: Feb 07, 2024 at 07:11 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -32,15 +32,20 @@ CREATE TABLE `admins` (
   `admin_fname` varchar(50) NOT NULL,
   `admin_lname` varchar(50) NOT NULL,
   `admin_num` varchar(50) NOT NULL,
-  `admin_email` varchar(50) NOT NULL
+  `admin_email` varchar(50) NOT NULL,
+  `admin_pass` varchar(50) NOT NULL,
+  `admin_role` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `admins`
 --
 
-INSERT INTO `admins` (`admin_id`, `admin_fname`, `admin_lname`, `admin_num`, `admin_email`) VALUES
-(39, 'ggg', 'ggg', 'ggg', 'gg@gmai.com');
+INSERT INTO `admins` (`admin_id`, `admin_fname`, `admin_lname`, `admin_num`, `admin_email`, `admin_pass`, `admin_role`) VALUES
+(80, 'Jimmy', 'Jimmy', 'Jimmy', 'Jimmy', '$2y$10$Mt75d9S6b6Y/cqEI.7f00uvhrLZUx9xT3ZQAavEr2/B', 'Admin'),
+(81, 'Janny', 'Janny', 'Janny', 'Janny', '$2y$10$he4qYYkLpA8gid2VWOSxtejSJlXGwxo1HBx62PYGVwf', 'Instructor'),
+(83, 'Janrey', 'Janrey', 'Janrey', 'Janrey', '$2y$10$O917sUa4O9GQa8urYVydruvIsh5W2tHBgsE8cp7eOB0', 'Admin'),
+(84, 'Lani', 'Lani', 'Lani', 'Lani', '$2y$10$uUPRUj0mwKAyTao2izV5nuDjWklBd00H0r4vTaZxxwO', 'Instructor');
 
 -- --------------------------------------------------------
 
@@ -50,11 +55,11 @@ INSERT INTO `admins` (`admin_id`, `admin_fname`, `admin_lname`, `admin_num`, `ad
 
 CREATE TABLE `assets` (
   `asset_id` int(50) NOT NULL,
-  `asset_name` varchar(50) NOT NULL,
+  `asset_brand` varchar(50) NOT NULL,
   `asset_type` varchar(50) NOT NULL,
   `asset_status` varchar(50) NOT NULL,
+  `asset_desc` varchar(50) NOT NULL,
   `asset_quant` int(50) NOT NULL,
-  `assign_lab` varchar(50) NOT NULL,
   `sup_id` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -62,9 +67,28 @@ CREATE TABLE `assets` (
 -- Dumping data for table `assets`
 --
 
-INSERT INTO `assets` (`asset_id`, `asset_name`, `asset_type`, `asset_status`, `asset_quant`, `assign_lab`, `sup_id`) VALUES
-(141, 'Mouse', 'External', 'New', 0, 'asd', 27),
-(142, 'Keyboard', 'External', 'New', 0, 'laboratory1', 27);
+INSERT INTO `assets` (`asset_id`, `asset_brand`, `asset_type`, `asset_status`, `asset_desc`, `asset_quant`, `sup_id`) VALUES
+(312, 'Razer', 'Scanner', 'New', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 6, 58),
+(313, '', 'Scanner', 'New', '', 0, 68),
+(314, '', 'Router', 'New', '', 0, 68),
+(315, '', 'Router', 'New', '', 0, 68),
+(316, '', 'Router', 'New', '', 0, 68),
+(317, '', 'Network Switch', 'New', '', 2, 68),
+(318, '', 'Network Switch', 'New', '', 0, 68),
+(319, '', 'Network Switch', 'New', '', 0, 58),
+(320, '', 'Headset', 'New', '', 0, 68),
+(321, '', 'Headset', 'New', '', 0, 65),
+(322, '', 'Headset', 'New', '', 0, 68),
+(323, '', 'Headset', 'New', '', 0, 68),
+(324, '', 'Microphone', 'New', '', 0, 68),
+(325, '', 'Microphone', 'New', '', 0, 65),
+(326, '', 'Camera', 'New', '', 0, 65),
+(327, '', 'Camera', 'New', '', 0, 65),
+(328, '', 'Printer', 'New', '', 0, 65),
+(329, '', 'Printer', 'New', '', 0, 65),
+(330, 'Razers', 'Desktop Computer', 'New', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 0, 65),
+(332, 'asddd', 'Projector', 'New', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 6, 65),
+(334, 'Brand', 'Monitor', 'New', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 3, 58);
 
 -- --------------------------------------------------------
 
@@ -84,8 +108,40 @@ CREATE TABLE `laboratories` (
 --
 
 INSERT INTO `laboratories` (`lab_id`, `lab_name`, `lab_date`, `admin_id`) VALUES
-(402, 'lab1', '0033-12-23', 39),
-(403, 'laboratory1', '0022-12-31', 39);
+(402, 'Laboratory123333', '242024-12-02', 84),
+(403, 'laboratory123sssss', '0022-12-12', 84),
+(404, '4th Floor Laboratorys', '2024-12-20', 84),
+(420, 'LaboratoryName', '2024-05-02', 81),
+(421, 'Master Lab', '2024-02-15', 84);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `request_asset`
+--
+
+CREATE TABLE `request_asset` (
+  `req_id` int(50) NOT NULL,
+  `req_name` varchar(50) NOT NULL,
+  `req_status` varchar(50) NOT NULL,
+  `quantity_asset` int(50) NOT NULL,
+  `lab_id` int(50) NOT NULL,
+  `req_date` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `request_asset`
+--
+
+INSERT INTO `request_asset` (`req_id`, `req_name`, `req_status`, `quantity_asset`, `lab_id`, `req_date`) VALUES
+(174, 'Mouse', 'Processing', 4, 403, 'Feb-02-2024'),
+(175, 'Keyboard', 'Processing', 6, 404, 'Feb-02-2024'),
+(176, 'asd', 'Cancelled', 1, 402, 'Feb-02-2024'),
+(177, 'asd', 'Processing', 1, 402, 'Feb-02-2024'),
+(178, 'asd', 'Processing', 1, 402, 'Feb-02-2024'),
+(179, 'asd', 'Received', 1, 402, 'Feb-02-2024'),
+(180, 'asd', 'Cancelled', 1, 402, 'Feb-02-2024'),
+(181, 'asd', 'Received', 1, 402, 'Feb-02-2024');
 
 -- --------------------------------------------------------
 
@@ -95,6 +151,7 @@ INSERT INTO `laboratories` (`lab_id`, `lab_name`, `lab_date`, `admin_id`) VALUES
 
 CREATE TABLE `supplier` (
   `sup_id` int(50) NOT NULL,
+  `company_name` varchar(50) NOT NULL,
   `sup_fname` varchar(50) NOT NULL,
   `sup_lname` varchar(50) NOT NULL,
   `contact_num` varchar(50) NOT NULL,
@@ -106,14 +163,10 @@ CREATE TABLE `supplier` (
 -- Dumping data for table `supplier`
 --
 
-INSERT INTO `supplier` (`sup_id`, `sup_fname`, `sup_lname`, `contact_num`, `email`, `address`) VALUES
-(27, 'Harfeil', 'Salmeron', '092342342323', 'harfeilsalmeron1@gmail.com', 'asdasd'),
-(28, 'Harfeil', 'Salmeron', '999999999999999999', 'harfeilsalmeron2@gmail.com', 'Abuno Kry-Ass Tungkop'),
-(31, 'gggs', 'Salmeron', '09232323', 'harfeilsalmeron1@gmail.com', 'asdas'),
-(33, 'gg', '', '', '', ''),
-(36, 'll', '', '', '', ''),
-(37, '33', '', '', '', ''),
-(38, '', '', '', '', '');
+INSERT INTO `supplier` (`sup_id`, `company_name`, `sup_fname`, `sup_lname`, `contact_num`, `email`, `address`) VALUES
+(58, 'asdds', 'asdd', 'asd', '09432.213417', 'asd@gmail.com', 'Abuno Kry-Ass Tungkop'),
+(65, 'Janrey', 'Janrey', 'Janrey', '097495132321s', 'Janrey@gmail.com', 'Abuno Kry-Ass Tungkop'),
+(68, 'JANJANs', 'JANJANs', 'JANJANs', '0945412134534', 'JANJANs@gmail.com', 'JANJANs');
 
 -- --------------------------------------------------------
 
@@ -126,20 +179,23 @@ CREATE TABLE `transaction_table` (
   `asset_id` int(50) NOT NULL,
   `lab_id` int(50) NOT NULL,
   `sup_id` int(50) NOT NULL,
-  `asset_stat` varchar(50) NOT NULL
+  `asset_stat` varchar(50) NOT NULL,
+  `trans_date` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `transaction_table`
 --
 
-INSERT INTO `transaction_table` (`trans_id`, `asset_id`, `lab_id`, `sup_id`, `asset_stat`) VALUES
-(22, 141, 402, 27, 'Broken'),
-(23, 142, 403, 27, 'New'),
-(24, 142, 403, 27, 'New'),
-(25, 142, 403, 27, 'New'),
-(26, 142, 403, 27, 'New'),
-(27, 142, 403, 27, 'New');
+INSERT INTO `transaction_table` (`trans_id`, `asset_id`, `lab_id`, `sup_id`, `asset_stat`, `trans_date`) VALUES
+(206, 312, 404, 58, 'New', 'Feb-02-2024'),
+(207, 312, 421, 58, 'Maintenance', 'Feb-02-2024'),
+(208, 312, 402, 58, 'Maintenance', 'Feb-02-2024'),
+(209, 312, 420, 58, 'Maintenance', 'Feb-02-2024'),
+(210, 312, 404, 58, 'New', 'Feb-02-2024'),
+(211, 312, 421, 58, 'New', 'Feb-02-2024'),
+(212, 317, 404, 68, 'New', 'Feb-07-2024'),
+(213, 317, 421, 68, 'New', 'Feb-07-2024');
 
 --
 -- Indexes for dumped tables
@@ -166,6 +222,13 @@ ALTER TABLE `laboratories`
   ADD KEY `admin_id` (`admin_id`);
 
 --
+-- Indexes for table `request_asset`
+--
+ALTER TABLE `request_asset`
+  ADD PRIMARY KEY (`req_id`),
+  ADD KEY `lab_id` (`lab_id`);
+
+--
 -- Indexes for table `supplier`
 --
 ALTER TABLE `supplier`
@@ -188,31 +251,37 @@ ALTER TABLE `transaction_table`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `admin_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `admin_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT for table `assets`
 --
 ALTER TABLE `assets`
-  MODIFY `asset_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
+  MODIFY `asset_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=335;
 
 --
 -- AUTO_INCREMENT for table `laboratories`
 --
 ALTER TABLE `laboratories`
-  MODIFY `lab_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=404;
+  MODIFY `lab_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=423;
+
+--
+-- AUTO_INCREMENT for table `request_asset`
+--
+ALTER TABLE `request_asset`
+  MODIFY `req_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=182;
 
 --
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `sup_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `sup_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `transaction_table`
 --
 ALTER TABLE `transaction_table`
-  MODIFY `trans_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `trans_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=214;
 
 --
 -- Constraints for dumped tables
@@ -229,6 +298,12 @@ ALTER TABLE `assets`
 --
 ALTER TABLE `laboratories`
   ADD CONSTRAINT `laboratories_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admins` (`admin_id`);
+
+--
+-- Constraints for table `request_asset`
+--
+ALTER TABLE `request_asset`
+  ADD CONSTRAINT `request_asset_ibfk_1` FOREIGN KEY (`lab_id`) REFERENCES `laboratories` (`lab_id`);
 
 --
 -- Constraints for table `transaction_table`

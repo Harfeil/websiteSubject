@@ -102,18 +102,18 @@ try {
             <div class="display">
                 <h2>REQUEST ASSETS</h2>
                 
-                    <div class="requestAssetTableDisplay">
-                    
-                            <table class = "requestAssetTable" id = "">
+                    <div class="assetTableRequestDisplay">
+
+                            <table class = "assetTableRequest" id = "assetTable">
 
                                 <thead>
-                                    <tr>
-                                        <th id = "actionEd">ID</th>
-                                        <th id = "actionEd">NAME</th>
-                                        <th id = "actionEd">STATUS</th>
-                                        <th id = "actionEd">QUANTITY</th>
-                                        <th id = "actionEd">LABORATORY NAME</th>
-                                        <th id = "actionEd">REQUEST DATE</th>
+                                    <tr class = "requestAssetDisplayHeader">
+                                        <th id = "reqAssetCol">ID</th>
+                                        <th id = "reqAssetCol">NAME</th>
+                                        <th id = "reqAssetCol">STATUS</th>
+                                        <th id = "reqAssetCol">QUANTITY</th>
+                                        <th id = "reqAssetCol">LABORATORY NAME</th>
+                                        <th id = "reqAssetCol">REQUEST DATE</th>
                                         <!-- <th id = "actionEd">ACTIONS</th> -->
                                     </tr>
                                 </thead>
@@ -140,7 +140,7 @@ try {
                                                 <td class = 'reqTableRow' >$row[req_id]</td>
                                                 <td class = 'reqTableRow' >$row[req_name]</td>
                                                 <td class = 'reqTableRow'  class = 'reqTableRow' id = 'statusReqTable' >
-                                                    <select data-id ='$row[req_id]' class='status-dropdown' id = 'myAssetReq' >
+                                                    <select data-id ='$row[req_id]' class='status-dropdown' id = 'statusReq'>
                                                         <option id = 'statusData' >$row[req_status]</option>
                                                         <option id = 'pendingStat' value = 'Pending'>Pending</option>
                                                         <option id = 'processingOption' value = 'Processing'>Processing</option>
@@ -168,7 +168,13 @@ try {
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script>
 
+        let statusDs = document.getElementById("statusReq");
+        let statusDisp = document.getElementById("statusData");
+        let processDisp = document.getElementById("processingOption");
+        let cancelDisp = document.getElementById("cancelStat");
+        let pendingDisp = document.getElementById("pendingStat");
 
+        
 
         document.addEventListener('DOMContentLoaded', function() {
             var tableRows = document.querySelectorAll('.editButtonAsset');
@@ -183,15 +189,32 @@ try {
             
             statSelect.forEach(function(statupdate) {
                 statupdate.addEventListener('change', function () {
+                    let reqStatus = document.getElementById("reqAssetStat");
                     
                     if (event.target.classList.contains('status-dropdown')){
                         var selectedValue = event.target.value;
+                        // console.log(selectedValue);
                     }
+                    
+                        // console.log(selectedValue);
+                    
                         let idReq = this.getAttribute('data-id');
                         var xhr = new XMLHttpRequest();
                         xhr.open("POST", "", true);
                         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                        // console.log(idReq);
                         xhr.send("status="+selectedValue+"&&reqId="+idReq);
+
+                        xhr.onreadystatechange = function() {
+                            if (xhr.readyState === XMLHttpRequest.DONE) {
+                                if (xhr.status === 200) {
+                                    // console.log(xhr.responseText);
+                                    // location.reload();
+                                } else {
+                                    console.error('There was a problem with the request.');
+                                }
+                            }
+                        };
                 });
             });
         });

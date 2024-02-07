@@ -249,8 +249,11 @@ if(isset($_POST['operations'])) {
 			repassword.value = "";
 			password.value = "";
 			roleSelector.value = "select";
+			window.location.href = "http://localhost/asset/AssetTracking/login.php";
 		}
 	}
+
+	
 
 
 	</script>

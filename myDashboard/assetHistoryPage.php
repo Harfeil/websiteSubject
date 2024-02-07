@@ -17,7 +17,7 @@
 
                             <thead class = "assetHistoryVos">
                                 <tr id = "assetHistoryCol">
-                                    <th class = "nameOfTrans"></th>
+                                    <th class = "rowHistory" id = "rowHistory">HISTORY NAME</th>
                                     <th class = "rowHistory">DEVICE TYPE</th>
                                     <th class = "rowHistory">STATUS</th>
                                     <th class = "rowHistory">ASSIGNED TO</th>
