@@ -40,7 +40,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="myLogInstyle.css">
+	<link rel="stylesheet" href="loginStyle.css">
 	<title>Asset Tracking</title>
 
 	
@@ -59,8 +59,8 @@
 					
 					
 					<div class="button">
-						<button>LOGIN</button>
-						<button >CANCEL</button>
+						<button id = "loginBtn">LOGIN</button>
+						<button id = "cancelBtn">CANCEL</button>
 					</div>
 				</form>
 			</div>

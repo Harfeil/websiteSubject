@@ -1,6 +1,23 @@
 <?php
+require_once('db_connector.php');
+
+if(isset($_POST['status']) && isset($_POST['reqId'])) {
+    $status = $_POST['status'];
+    $id =  $_POST['reqId'];
+
+
+    
+    $sql = "UPDATE transaction_table SET lab_id = '$status' WHERE trans_id = '$id'";
+
+    if ($connection->query($sql) === TRUE) {
+    } else {
+        $connection->error;
+    }
+}
 
     include "templates/header.php";
+
+    
 
 ?>
         <div class="content" id="content">
@@ -14,7 +31,9 @@
 
                 <div id="popupFormAssetDisplay" class="popup-formAssetDisplay">
                     <button id = "cancelAssetDisplay" onclick = "cancelAsset()">Cancel</button>
-                        <div class = "assetDisplay" ID = "assetDisplay">
+                        <div class = "assetSpecificationDisplay" ID = "assetSpecificationDisplay">
+                            <h6 class = "qrDisplay" id = "assetD">Asset ID:</h6>
+                            <h5 class = "qrDisplay" id = "assetIdDisplay">15</h2><br>
                             <h6 class = "qrDisplay" id = "typeDisplayAss">DEVICE TYPE:</h6>
                             <h5 class = "qrDisplay" id = "deviceTypeAss">Mouse</h2><br>
                             <h6 class = "qrDisplay" id = "brandLblDisplay">BRAND:</h6>
@@ -24,11 +43,8 @@
                             <h6 class = "qrDisplay" id = "descriptionDisplayAss">DESCRIPTION:</h6>
                             <h5 class = "qrDisplay" id = "descriptionDisplayAsset"></h5><br>
                             <h6 class = "qrDisplay" id = "companyDisplayAss">COMPANY SUPPLIER:</h6>
-                            <h5 class = "qrDisplay" id = "companyDisplayAsset"></h5><br>
-                            <h6 class = "qrDisplay" id = "contactPersonAss">CONTACT PERSON:</h6>
-                            <h5 class = "qrDisplay" id = "contactPersonAsset"></h5><br>
-
-                            <button onclick = "generateQrCode()">Generate Qr Code</button>
+                            <h5 class = "qrDisplay" id = "companyDisplayAsset">asd</h5><br>
+                            <button id = "qrCodeGenerate"onclick = "generateQrCode()">Generate Qr Code</button>
                         
                         <div class = "qrcode" id = "qrcode">
                             <h6>QR CODE</h3>
@@ -42,7 +58,7 @@
 
                         <table class = "assetTable" id = "assetTable">
 
-                            <thead class = "rowDisplay">
+                            <thead class = "assetRowDisplay">
                                 <tr>
                                     <th class = "actionAss">ID</th>
                                     <th class = "actionAss">DEVICE TYPE</th>
@@ -57,6 +73,16 @@
                                 <?php
                                 require_once('db_connector.php');
 
+                                $labNamesQuery = "SELECT lab_id, lab_name FROM laboratories";
+                                $labNamesResult = $connection->query($labNamesQuery);
+                                $labOptions = "";
+                                if ($labNamesResult->num_rows > 0) {
+                                    while ($labRow = $labNamesResult->fetch_assoc()) {
+                                        $labOptions .= "<option value='$labRow[lab_id]'>$labRow[lab_name]</option>";
+                                    }
+                                }
+                            
+
 
                                     $sql = "SELECT transaction_table.trans_id as trans_id, transaction_table.asset_id as asset_id, transaction_table.lab_id as lab_id, transaction_table.sup_id as sup_id, transaction_table.asset_stat as asset_status, assets.asset_type as asset_type, assets.asset_quant as asset_quant, assets.asset_brand as asset_brand, assets.asset_desc as asset_desc,  CONCAT(supplier.sup_fname, ' ', supplier.sup_lname) as suplFulName,supplier.company_name as company_name, laboratories.lab_name as assign_lab FROM transaction_table INNER JOIN assets ON transaction_table.asset_id = assets.asset_id INNER JOIN laboratories ON transaction_table.lab_id = laboratories.lab_id INNER JOIN supplier ON transaction_table.sup_id = supplier.sup_id";
                                    
@@ -68,12 +94,18 @@
 
                                     while($row = $result->fetch_assoc()){
                                         echo "
-                                        <tbody class = 'table-row' data-company = '$row[company_name]', data-assetBrand = '$row[asset_brand]' data-status = '$row[asset_status]' data-contactSup = '$row[suplFulName]'data-description = '$row[asset_desc]' data-assetType = '$row[asset_type]'>
-                                            <td  id = 'laboratoryRow'>$row[trans_id]</td>
-                                            <td  id = 'laboratoryRow'>$row[asset_type]</td>
-                                            <td id = 'laboratoryRow' >$row[asset_brand]</td>
-                                            <td  id = 'laboratoryRow'>$row[asset_status]</td>
-                                            <td id = 'laboratoryRow'>$row[assign_lab]</td>
+                                        <tbody class = 'table-row' >
+                                            <td data-company = '$row[company_name]', data-assetBrand = '$row[asset_brand]'  data-assetId = '$row[trans_id]' data-status = '$row[asset_status]' data-contactSup = '$row[suplFulName]'data-description = '$row[asset_desc]' data-assetType = '$row[asset_type]' class = 'assetDisplayRow' id = 'assetRow'>$row[trans_id]</td>
+                                            <td data-company = '$row[company_name]', data-assetBrand = '$row[asset_brand]'  data-assetId = '$row[trans_id]' data-status = '$row[asset_status]' data-contactSup = '$row[suplFulName]'data-description = '$row[asset_desc]' data-assetType = '$row[asset_type]' class = 'assetDisplayRow' class = 'assetDisplayRow' id = 'assetRow'>$row[asset_type]</td>
+                                            <td data-company = '$row[company_name]', data-assetBrand = '$row[asset_brand]'  data-assetId = '$row[trans_id]' data-status = '$row[asset_status]' data-contactSup = '$row[suplFulName]'data-description = '$row[asset_desc]' data-assetType = '$row[asset_type]' class = 'assetDisplayRow' id = 'assetRow' >$row[asset_brand]</td>
+                                            <td data-company = '$row[company_name]', data-assetBrand = '$row[asset_brand]'  data-assetId = '$row[trans_id]' data-status = '$row[asset_status]' data-contactSup = '$row[suplFulName]'data-description = '$row[asset_desc]' data-assetType = '$row[asset_type]' class = 'assetDisplayRow' id = 'assetRow'>$row[asset_status]</td>
+                                            <td id = 'assetRow'>
+                                                <select class='status-dropdown' data-lab_id ='$row[lab_id]' data-trans_id ='$row[trans_id]'>
+                                                    <option >$row[assign_lab]
+                                                    </option>
+                                                    $labOptions
+                                                </select>
+                                            </td>
                                         ";
                                         echo '</tr>';
                                     }
@@ -96,26 +128,43 @@
                 .map(element => (element.textContent || element.innerText) + '\t \n')
                 .join('');
             generateDynamicQRCode(combinedText);
-        }
-        
-        function cancelAsset(){
-            popupFormAssetDisplay.style.display = "none";
-            location.reload();
-        }
+            }
+            
+            function cancelAsset(){
+                popupFormAssetDisplay.style.display = "none";
+                location.reload();
+            }
 
-        function generateDynamicQRCode(text) {
-            var qrcode = new QRCode(document.getElementById("qrcode"), {
-            text: text,
-            width: 200,
-            height: 200,
-        });
-  }
-
+            function generateDynamicQRCode(text) {
+                var qrcode = new QRCode(document.getElementById("qrcode"), {
+                text: text,
+                width: 180,
+                height: 180,
+            });
+        }
 
           document.addEventListener('DOMContentLoaded', function() {
-            var showAssetInfo = document.querySelectorAll('.table-row');
+            var showAssetInfo = document.querySelectorAll('.assetDisplayRow');
+            var labSelect = document.querySelectorAll('.status-dropdown');
+           
+            labSelect.forEach(function(statupdate) {
+                statupdate.addEventListener('change', function () {
+                    
+                    if (event.target.classList.contains('status-dropdown')){
+                        var selectedValue = event.target.value;
+                    }
+                        let transId = this.getAttribute("data-trans_id");
+                        console.log(selectedValue);
+                        console.log(transId);
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("POST", "", true);
+                        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                        xhr.send("status="+selectedValue+"&&reqId="+transId);
+                });
+            });
             showAssetInfo.forEach(function(row) {
                 row.addEventListener('click', function() {
+                    let assetIdInput = document.getElementById("assetIdDisplay");
                     let type = document.getElementById("deviceTypeAss");
                     let brand = document.getElementById("brandLblDisplayAss");
                     let status = document.getElementById("statusDisplayAsset");
@@ -130,19 +179,20 @@
                     let assetDesc = this.getAttribute('data-description');
                     let assetbrand = this.getAttribute('data-assetBrand');
                     let assetSupplier = this.getAttribute('data-assetSup');
-                    let assetId = this.getAttribute('data-assetAydi');
+                    let assetId = this.getAttribute('data-assetId');
                     let supId = this.getAttribute('data-supId');
                     let h2Content = document.getElementById
                     ("titleOfForm");
                     popupFormAssetDisplay.style.display = "block";
+                    assetIdInput.innerHTML = assetId;
                     type.innerHTML = assetType;
                     brand.innerHTML = assetbrand;
                     status.innerHTML = assetStat;
                     description.innerHTML = assetDesc;
-                    contactPerson.innerHTML = assetSup;
                     companyDisp.innerHTML = company;
                 });
             });
+            
         });
 
         viewStock.addEventListener("click", function(){

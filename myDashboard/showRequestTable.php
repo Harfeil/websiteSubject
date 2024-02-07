@@ -222,10 +222,7 @@ try {
                     </div>
                 
                     <div class="assetTableDisplay">
-
-                        <br><br><br>
-                    
-
+                        
                         <table class = "stocksAssetDisplay" id = "assetTable">
 
                             <thead>
@@ -291,6 +288,7 @@ try {
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script>
+
         
         nameOfAssetReqs.addEventListener("change" , function(){
             let change = document.getElementById("nameOfAssetReqs").value;

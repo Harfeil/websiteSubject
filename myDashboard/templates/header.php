@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="newcss.css">
+    <link rel="stylesheet" href="newCss.css">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
@@ -40,7 +40,7 @@
                         <a href="http://localhost/asset/myDashboard/asset.php?admin=harfeil"><i class="fa fa-object-group" aria-hidden="true"></i> <h5 id = "assetText" class = "textLink">Assets</h5></a>
                     </li>
                     <li>
-                        <a href="http://localhost/asset/myDashboard/admin.php?admin=harfeil"><i class="fas fa-user"></i><h5 id = "adminText" class = "textLink">Admin</h5></a>
+                        <a href="http://localhost/asset/myDashboard/admin.php?admin=harfeil"><i class="fas fa-user"></i><h5 id = "adminText" class = "textLink">Laboratory Admin</h5></a>
                         
                     </li>
                     <li>

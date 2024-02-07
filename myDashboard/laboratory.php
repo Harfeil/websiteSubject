@@ -38,31 +38,21 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 echo "Full name already exists!";
             }
 
-        }else if($operation == "update"){
+        }else if($operation == "Update"){
 
             $labId = $_POST["labId"];
             $name = $_POST["labNameUpdate"];
             $adminId = $_POST["adminUpdate"];
             $date = $_POST["dateUpdate"];
 
-            $sqlLabname = "SELECT * FROM laboratories where lab_name = '$name'";
 
-            $resultLabNames = $connection->query($sqlLabname);
+            $sqlUpdateLab = "UPDATE laboratories SET lab_name = '$name', lab_date = '$date', admin_id = '$adminId' WHERE lab_id = '$labId'";
 
-            if ($resultLabNames->num_rows == 0) {
-
-                $sqlUpdateLab = "UPDATE laboratories SET lab_name = '$name', lab_date = '$date', admin_id = '$adminId' WHERE lab_id = '$labId'";
-
-                if ($connection->query($sqlUpdateLab) === TRUE) {
-                } else {
-                    $connection->error;
-                }
-                
+            if ($connection->query($sqlUpdateLab) === TRUE) {
             } else {
-                echo "Full name already exists!";
+                $connection->error;
             }
-            
-           
+                
     
         }
         
@@ -124,15 +114,15 @@ $resultAdmin = $connection->query($sqlAdmin);
 
                                     <div class = "idDisplay" id = "idDisplay">
                                         <label for="">ID</label>
-                                        <input type="text" id = "labIdDisplay" name = "labId"><br><br>
+                                        <input type="text" id = "labIdDisplay" name = "labId" ><br><br>
                                     </div>
                                     <input type="text" name = "oldName" id = "oldNameDisplay">
                                     <input type="text" placeholder = "typepost" name = "typePostLab" id = "typePostLab">
                                     <label >Laboratory Name:</label>
-                                    <input type="text" id = "laboratoryAddName" name = "laboratoryName" value = "<?php echo $name; ?>" ><br><br>
+                                    <input type="text" id = "laboratoryAddName" name = "laboratoryName" value = "<?php echo $name; ?>" required><br><br>
                                     <input type="text" id = "withoutSpace" name = "labNameNoSpace">
                                     <label for="options">Select an Admin:</label>
-                                    <select name="admin" id="optionsAdmin">
+                                    <select name="admin" id="optionsAdmin" required>
                                     <?php
                                         if ($resultAdmin->num_rows > 0) {
                                             while ($row = $resultAdmin->fetch_assoc()) {
@@ -145,7 +135,7 @@ $resultAdmin = $connection->query($sqlAdmin);
                                     </select><br>
                                     <a href="http://localhost/asset/myDashboard/admin.php" id = "addAdminBtn">+Add Admin</a><br>
                                     <label >Date Created:</label>
-                                    <input required type="date" id = "dateLabCreate" name = "mydates" value = "<?php echo $date; ?>" ><br><br>
+                                    <input type="date" id = "dateLabCreate" name = "mydates" value = "<?php echo $date; ?>" required><br><br>
                             <?php
 
                             if(!empty($successMessage)){
@@ -176,15 +166,15 @@ $resultAdmin = $connection->query($sqlAdmin);
 
                 <div class="labTableContainer">
 
-                    <table  id = "myLaboratoryTable" >
+                    <table  class = "myLaboratoryTable" >
 
                         <thead >
-                            <tr>
-                                <th id = "actionEd">ID</th>
-                                <th id = "actionEd">LABORATORY NAME</th>
-                                <th id = "actionEd">ADMIN</th>
-                                <th id = "actionEd">DATE CREATED</th>
-                                <th id = "actionEd" class = "laboratoryAction">ACTIONS</th>
+                            <tr class = "laboratoryRowTable">
+                                <th id = "laboratoryCol">ID</th>
+                                <th id = "laboratoryCol">LABORATORY NAME</th>
+                                <th id = "laboratoryCol">ADMIN</th>
+                                <th id = "laboratoryCol">DATE CREATED</th>
+                                <th id = "laboratoryCol" class = "laboratoryCol">ACTIONS</th>
                             </tr>
                         </thead>
 
@@ -209,7 +199,7 @@ $resultAdmin = $connection->query($sqlAdmin);
                                             <td  class='laboratoryRow'  data-adminFName = '$row[fname]' data-adminLName = '$row[lname]' data-labid='$row[lab_id]' data-labname='$row[lab_name]'data-adminId='$row[admin_id]' id = 'laboratoryRow' style = 'padding-left = 400px;' >$row[lab_name]</td>
                                             <td class='laboratoryRow'   id = 'laboratoryRow'  data-adminFName = '$row[fname]' data-adminLName = '$row[lname]' >  $row[full_name]</td>
                                             <td  class='laboratoryRow'  data-labid='$row[lab_id]' data-labname='$row[lab_name]'data-adminId='$row[admin_id]' id = 'laboratoryRow' >$row[lab_date]</td>
-                                            <td class = 'buttons' style='border: none;' id = 'laboratoryRow'>
+                                            <td class = 'buttons' id = 'laboratoryRow'>
                                                <button data-labId='$row[lab_id]' data-labname='$row[lab_name]' data-labadmin='$row[full_name]' data-labadminId='$row[admin_id]'data-labdate='$row[lab_date]' class = 'editLabButton' id = 'editLabButton'>Edit</button>
                                                <button data-labId = '$row[lab_id]' id = 'deleteLabBtn' data-labname='$row[lab_name]' class = 'deleteLabBtn'>Delete</button>
                                             </td>
@@ -296,7 +286,11 @@ $resultAdmin = $connection->query($sqlAdmin);
                     allButtons.forEach(function(button) {
                         button.disabled = true;
                     });
+                    typePost.value = "Update";
                     titleLabForm.textContent = "Update Laboratory Form";
+                    labNameInput.name = "labNameUpdate";
+                    labAdminInput.name = "adminUpdate";
+                    labDateInput.name = "dateUpdate";
                     addLabTable.value = "Update Laboratory";
                     labOldNameInput.value = labName;
                     labNameInput.value = labName;
@@ -304,10 +298,6 @@ $resultAdmin = $connection->query($sqlAdmin);
                     labAdminInput.value = labAdmin;
                     labDateInput.value = labDate;
                     popupFormLab.style.display = "block";
-                    typePost.value = "update";
-                    labNameInput.name = "labNameUpdate";
-                    labAdminInput.name = "adminUpdate";
-                    labDateInput.name = "dateUpdate";
                 });
 
                

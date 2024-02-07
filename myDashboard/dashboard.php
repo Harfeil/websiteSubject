@@ -91,14 +91,14 @@ if ($resultAdmin) {
                         <div class = "totalAssetTableDashboard" id = "totalAssetTableDashboard">
                         <button id = "viewAllAssetDashboard">View All</button>
                         <h4 id = "assetTotalTitleDashboard">ASSETS</h4>
-                            <table class = "assetTableDashboard" >
+                            <table class = "" >
 
                                 <thead >
-                                    <tr>
-                                    <th class = "">ID</th>
-                                        <th class = "">DEVICE TYPE</th>
-                                        <th class = "">BRAND</th>
-                                        <th class = "">STATUS</th>
+                                    <tr id = "dashboardColumn">
+                                    <th >ID</th>
+                                        <th class = "dashboardColName">DEVICE TYPE</th>
+                                        <th class = "dashboardColName">BRAND</th>
+                                        <th class = "dashboardColName">STATUS</th>
                                     </tr>
                                 </thead>
 
@@ -118,11 +118,11 @@ if ($resultAdmin) {
 
                                         while($row = $result->fetch_assoc()){
                                             echo "
-                                            <tbody  data-company = '$row[company_name]', data-assetBrand = '$row[asset_brand]' data-status = '$row[asset_status]' data-contactSup = '$row[suplFulName]'data-description = '$row[asset_desc]' data-assetType = '$row[asset_type]'>
-                                                <td  id = 'laboratoryRow'>$row[trans_id]</td>
-                                                <td  id = 'laboratoryRow'>$row[asset_type]</td>
-                                                <td id = 'laboratoryRow' >$row[asset_brand]</td>
-                                                <td  id = 'laboratoryRow'>$row[asset_status]</td>
+                                            <tbody>
+                                                <td id = 'assetDashboardRow'>$row[trans_id]</td>
+                                                <td id = 'assetDashboardRow'>$row[asset_type]</td>
+                                                <td id = 'assetDashboardRow'>$row[asset_brand]</td>
+                                                <td id = 'assetDashboardRow'>$row[asset_status]</td>
                                             ";
                                             echo '</tr>';
                                         }
@@ -137,13 +137,13 @@ if ($resultAdmin) {
                         <div class = "totalLaboratoryTableDashboard">
                         <button id = "viewAllAssetDashboard">View All</button>
                         <h4 id = "assetTotalTitleDashboard">LABORATORY</h4>
-                            <table  id = "laboratoryTotalDashboard" >
+                            <table class = "laboratoryDashboardDisplay"  id = "" >
 
                                 <thead >
-                                    <tr>
-                                        <th id = "">ID</th>
-                                        <th id = "">LABORATORY NAME</th>
-                                        <th id = "">ADMIN</th>
+                                    <tr class = "laboratoryColumnMain" id = "dashboardColumn">
+                                        <th class = "dashboardColName">ID</th>
+                                        <th class = "dashboardColName">LABORATORY NAME</th>
+                                        <th class = "dashboardColName">ADMIN</th>
                                     </tr>
                                 </thead>
 
@@ -164,9 +164,9 @@ if ($resultAdmin) {
                                                 echo "
                                                 <tbody >
                                                 <tr >
-                                                    <td class='laboratoryRow' data-adminFName = '$row[fname]' data-adminLName = '$row[lname]' data-labid='$row[lab_id]' data-labname='$row[lab_name]'data-adminId='$row[admin_id]' id = 'laboratoryRow' >$row[lab_id]</td>
-                                                    <td  class='laboratoryRow'  data-adminFName = '$row[fname]' data-adminLName = '$row[lname]' data-labid='$row[lab_id]' data-labname='$row[lab_name]'data-adminId='$row[admin_id]' id = 'laboratoryRow' style = 'padding-left = 400px;' >$row[lab_name]</td>
-                                                    <td class='laboratoryRow'   id = 'laboratoryRow'  data-adminFName = '$row[fname]' data-adminLName = '$row[lname]' >  $row[full_name]</td>
+                                                    <td id = 'labDashRow' >$row[lab_id]</td>
+                                                    <td  id = 'labDashRow' >$row[lab_name]</td>
+                                                    <td id = 'labDashRow' >  $row[full_name]</td>
                                                 </tr>
                                                 </tbody >
                                                 "; 
@@ -184,11 +184,11 @@ if ($resultAdmin) {
                             <table class = "adminTableDashboard" >
 
                                 <thead >
-                                    <tr>
-                                        <th id = "">ID</th>
-                                        <th id = "">FIRST NAME</th>
-                                        <th id = "">LAST NAME</th>
-                                        <th id = "">EMAIL</th>
+                                    <tr class = "dashboardColName"id = "dashboardColumn">
+                                        <th class = "dashboardColName" id = "dashboardColName">ID</th>
+                                        <th class = "dashboardColName" id = "dashboardColName">FIRST NAME</th>
+                                        <th class = "dashboardColName" id = "dashboardColName">LAST NAME</th>
+                                        <th class = "dashboardColName" id = "dashboardColName">EMAIL</th>
                                     </tr>
                                 </thead>
 
@@ -208,10 +208,10 @@ if ($resultAdmin) {
                                         while($row = $result->fetch_assoc()){
                                             echo "
                                             <tbody >
-                                                <td  id = 'laboratoryRow'>$row[admin_id]</td>
-                                                <td  id = 'laboratoryRow' style = 'padding-left = 400px;'>$row[admin_fname]</td>
-                                                <td  id = 'laboratoryRow'>$row[admin_lname]</td>
-                                                <td  id = 'laboratoryRow'>$row[admin_email]</td>
+                                                <td  id = 'assetDashboardRow'>$row[admin_id]</td>
+                                                <td   id = 'assetDashboardRow'>$row[admin_fname]</td>
+                                                <td   id = 'assetDashboardRow'>$row[admin_lname]</td>
+                                                <td   id = 'assetDashboardRow'>$row[admin_email]</td>
                                             ";
                                             echo '</tr>';
                                         }
@@ -226,12 +226,12 @@ if ($resultAdmin) {
                             <table class = "totalSupplierDashboardTable" >
 
                                 <thead >
-                                    <tr>
-                                        <th id = "suppCol">ID</th>
-                                        <th id = "suppCol">COMPANY NAME</th>
-                                        <th id = "suppCol">FIRST NAME</th>
-                                        <th id = "suppCol">LAST NAME</th>
-                                        <th id = "suppCol">EMAIL</th>
+                                    <tr class = "suppColDashboard"id = "dashboardColumn">
+                                        <th class = "dashboardColName" id = "suppDashCol">ID</th>
+                                        <th class = "dashboardColName" id = "suppDashCol">COMPANY NAME</th>
+                                        <th class = "dashboardColName" id = "suppDashCol">FIRST NAME</th>
+                                        <th class = "dashboardColName" id = "suppDashCol">LAST NAME</th>
+                                        <th class = "dashboardColName" id = "suppDashCol">EMAIL</th>
                                     </tr>
                                 </thead>
 
@@ -251,11 +251,11 @@ if ($resultAdmin) {
                                         while($row = $result->fetch_assoc()){
                                             echo "
                                             <tbody >
-                                                <td    id = 'laboratoryRow'>$row[sup_id]</td>
-                                                <td id = 'laboratoryRow' style = 'padding-left = 400px;'>$row[company_name]</td>
-                                                <td  id = 'laboratoryRow' style = 'padding-left = 400px;'>$row[sup_fname]</td>
-                                                <td   id = 'laboratoryRow'>$row[sup_lname]</td>
-                                                <td id = 'laboratoryRow'>$row[email]</td>
+                                                <td   id = 'assetDashboardRow'>$row[sup_id]</td>
+                                                <td  id = 'assetDashboardRow'>$row[company_name]</td>
+                                                <td   id = 'assetDashboardRow'>$row[sup_fname]</td>
+                                                <td   id = 'assetDashboardRow'>$row[sup_lname]</td>
+                                                <td  id = 'assetDashboardRow'>$row[email]</td>
                                             ";
                                             echo '</tr>';
                                         }
