@@ -203,15 +203,15 @@ include "templates/header.php";
                     
                     <div class = "viewAssetInsideLab">
 
-                        <table class = "tableInsideLab" id = "assetTable">
+                        <table class = "">
 
                             <thead >
-                                <tr class = "">
-                                    <th id = "idAssetIns">ID</th>
-                                    <th id = "typeAssetIns">TYPE</th>
-                                    <th id = "brandAssetIns">BRAND</th>
-                                    <th id = "statusAssetIns">STATUS</th>
-                                    <th id = "descriptionAssetIns">DESCRIPTION</th>
+                                <tr class = "viewInsideTableHeader">
+                                    <th id = "viewInsideCol">ID</th>
+                                    <th id = "viewInsideCol">TYPE</th>
+                                    <th id = "viewInsideCol">BRAND</th>
+                                    <th id = "viewInsideCol">STATUS</th>
+                                    <th id = "viewInsideCol">DESCRIPTION</th>
                                 </tr>
                             </thead>
 
@@ -234,10 +234,10 @@ include "templates/header.php";
                                         echo "
                                         <tbody  class = 'table-row'>
                                             <tr class = 'myTableRow'>
-                                            <td class = 'tdIns' id = 'laboratoryRow' >$row[trans_id]</td>
-                                            <td class = 'tdIns' id = 'laboratoryRow'>$row[asset_type]</td>
-                                            <td class = 'tdIns' id = 'laboratoryRow'>$row[asset_brand]</td>
-                                            <td class = 'tdIns' id = 'laboratoryRow'>
+                                            <td  id = 'viewInsideRow' >$row[trans_id]</td>
+                                            <td id = 'viewInsideRow'>$row[asset_type]</td>
+                                            <td  id = 'viewInsideRow'>$row[asset_brand]</td>
+                                            <td  id = 'viewInsideRow'>
 
                                                 <select  data-id ='$row[trans_id]' id = 'selectStatusAssetIns' class = 'statusAssetSelect'>
                                                     <option >$row[asset_stat]</option>
@@ -249,7 +249,7 @@ include "templates/header.php";
                                                 </select>
                                             
                                             </td>
-                                            <td class = 'tdIns' id = 'laboratoryRow'>$row[asset_desc]</td>
+                                            <td id = 'viewInsideRow'>$row[asset_desc]</td>
                                             </tr> 
                                         ";
                                     }
@@ -300,7 +300,7 @@ include "templates/header.php";
                                             <td id = 'laboratoryRow' >$row[req_name]</td>
                                             <td  id = 'laboratoryRow'>
                                            
-                                                <select data-id ='$row[req_id]' class='requestAssetStatus' id='reqAssetStat'>
+                                                <select id = 'statusReqInsideSelect' data-id ='$row[req_id]' class='requestAssetStatus' id='reqAssetStat'>
                                                    <option id = 'displayStats' >$row[req_status]</option>
                                                    <option id = 'pendingStat' value = 'Pending'>Pending</option>
                                                    <option id = 'receiveStat'value = 'Received'>Received</option>

@@ -82,7 +82,7 @@
 .display{
     width: 100%;
     position: fixed;
-    margin-left: 40px;
+    margin-left: 10px;
     padding-top: 3%;
     height: 700px;
     overflow-y: auto;
@@ -111,12 +111,11 @@ ion-icon{
 }
 /* Dashboard */
 .display{
-    height: 840px;
+    height: 890px;
 }
 .threeMainContainer{
     margin-top: -20px;
     display:  flex;
-    width: 100%;
 }
 .totalLaboratoryDisplay{
     padding-top: 20px;
@@ -219,6 +218,7 @@ ion-icon{
     width: 660px;
     margin-left: 1px;
     box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+    border-radius: 10px;
 }
 #viewAllAssetDashboard{
     position: relative;
@@ -235,19 +235,30 @@ ion-icon{
     text-align: center;
     margin-top: -30px;
 }
-.totalLaboratoryTableDashboard{
+.dashboardTables{
     width: 660px;
+    margin-left: 10px;
+    background-color: #fff;
+}
+.totalLaboratoryTableDashboard{
+    width: 680px;
     margin-left: 20px;
 }
 #laboratoryTotalDashboard,.adminTableDashboard{
     margin-top: 20px;
 }
 .totalAdminTableDashboard, .totalSupplierDashboard{
-    width: 660px;
+    width: 680px;
     transform: translateY(-35px);
 }
+.totalAssetTableDashboard{
+    width: 680px;
+}
 .adminTableDashboard{
-    margin-left: 8px;
+    background-color: #fff;
+    width: 660px;
+    margin-left: 10px;
+    margin-bottom: 50px;
 }
 .secondDashboardTableContainer{
     display: flex;
@@ -256,8 +267,26 @@ ion-icon{
     margin-left: 20px;
 }
 .totalSupplierDashboardTable{
-    margin-left: 7px;
-    margin-top: -18px;
+    margin-top: 20px;
+    background-color: #fff;
+}
+#assetDashboardRow{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.laboratoryColumnMain{
+    transform: translateY(-12px);
+}
+.dashboardColName{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.laboratoryDashboardDisplay{
+    margin-top: 20px;
+}
+#labDashRow{
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 
@@ -362,13 +391,9 @@ ion-icon{
     color: white;
 }
 #laboratoryRow{
-    font-size: 18px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    border-top: none;
-    border-right: none;
-    border-left: none;
-    border-bottom: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid lightgray;
 }
 #myFormSup label{
     font-size: 20px;
@@ -404,6 +429,9 @@ ion-icon{
 #myLaboratoryTable{
     margin-top: 20px;
 }
+.laboratoryRowTable{
+    background-color: #6CB4EE;
+}
 .laboratoryAction{
     width: 290px;
 }
@@ -412,18 +440,28 @@ ion-icon{
     width: 100px;
     border-radius: 5px;
 }
+#laboratoryCol{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.laboratoryCol{
+    width: 300px;
+}
 #deleteLabBtn{
     background-color: red;
 }
 .labTableContainer{
-    padding-top: 3%;
-    max-height: 700px;
+    margin-left: 30px;
+    margin-top: 30px;
     overflow-y: auto;
+    height: 620px;
     width: 80%;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+    border-radius: 10px;
 }
 .actionAss{
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 /* Supplier Page*/
@@ -515,16 +553,27 @@ tr{
 #myFormLab{
     margin-top: 46px;
 }
-.supplierTable{
-    width: 80%;
-}
 .suppTableDisplay{
-    max-height: 700px;
+    margin-top: 30px;
     overflow-y: auto;
+    height: 620px;
+    margin-left: 30px;
+    width: 80%;
+    background-color: white;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+    border-radius: 10px;
 }
 #suppCol{
-    padding-top: 30px;
-    padding-bottom: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+#supplierRow{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid lightgray;
+}
+.supplierTableHeader{
+    background-color: #73C2FB;
 }
 #addSuppLink{
     margin-left: 473px;
@@ -657,9 +706,16 @@ tr{
     width: 375px;
 }
 .assetTableDisplay{
+    margin-left: 30px;
+    margin-top: 30px;
     overflow-y: auto;
-    max-height: 700px;
-    width: 85%;
+    height: 620px;
+    width: 80%;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+    border-radius: 10px;
+}
+.assetRowDisplay{
+    background-color: #6CB4EE;
 }
 table{
     width: 100%;
@@ -671,6 +727,11 @@ table{
 }
 .table-rowAsset{
     padding-top: 20px;
+}
+#assetRow{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid lightgray;
 }
 .popup-formAssetDisplay {
     height: 700px;
@@ -687,12 +748,12 @@ table{
     box-shadow: 0 0 10px rgba(189, 8, 8, 0.2);
     z-index: 9999;
 }
-.assetDisplay{
-    padding-top: 30px;
+.assetSpecificationDisplay{
+    padding-top: 50px;
     position: fixed;
 }
 #cancelAssetDisplay{
-    width: 100px;
+    width: 200px;
     background-color: red;
 }
 .statusAsset{
@@ -702,12 +763,18 @@ table{
     padding-top: 15px;
     width: 400px;
 }
-#typeDisplayAss,#brandLblDisplay, #statusDisplayAss,#descriptionDisplayAss, #companyDisplayAss, #contactPersonAss{
+#typeDisplayAss,#brandLblDisplay, #statusDisplayAss,#descriptionDisplayAss, #companyDisplayAss, #contactPersonAss, #assignAssetDisp{
     background-color: lightgrey;
     height: 30px;
     width: 200px;
     color: black;
     padding-top: 5px;
+    text-align: center;
+
+}
+#labSelector{
+    height: 35px;
+    width: 200px;
     text-align: center;
 }
 #qrcode{
@@ -715,7 +782,7 @@ table{
     margin-left: 367px;
 }
 #qrCodeGenerate{
-    margin-top: 70px;
+    /* margin-top: 70px; */
 }
 .listAssetTitle{
     margin-top: 50px;
@@ -766,10 +833,20 @@ table{
     background-color: red;
 }
 .adminTableDisplay{
-    padding-top: 5%;
-    width:89%;
-    max-height: 700px;
+    border-radius: 10px;
+    margin-left: 30px;
+    margin-top: 30px;
     overflow-y: auto;
+    height: 680px;
+    width: 80%;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+.adminHeaderTable{
+    background-color: #73C2FB;
+}
+#adminCol{
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 #addAdminBtn{
     margin-left: 461px;
@@ -887,10 +964,6 @@ table{
     margin-top: 40px;
     width: 100%;
 }
-.tableInsideLab{
-    width: 80%;
-    padding: 5px;
-}
 .tdIns{
     padding-top: 30px;
 }
@@ -929,10 +1002,6 @@ table{
 #postTypeView{
     display: none;
 }
-.viewAssetInsideLab{
-    max-height: 600px;
-    overflow-y: auto;
-}
 #assignedAss{
     height: 35px;
     width: 300px;
@@ -959,6 +1028,19 @@ table{
     background-color: red;
     margin-bottom: 20px;
 }
+#statusReqInsideSelect{
+    border: none;
+    background-color: transparent;
+}
+#popupFormViewLabReqTable{
+    border-radius: 10px;
+    margin-left: 30px;
+    margin-top: 30px;
+    overflow-y: auto;
+    height: 680px;
+    width: 80%;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
 #descriptionAssetIns{
     width: 400px;
 }
@@ -978,19 +1060,56 @@ table{
 #typeAssetIns,#idAssetIns,#brandAssetIns{
     width: 100px;
 }
-
+.viewAssetInsideLab{
+    margin-left: 30px;
+    margin-top: 30px;
+    overflow-y: auto;
+    height: 580px;
+    width: 80%;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+    border-radius: 10px;
+}
+.viewInsideTableHeader{
+    background-color: #73C2FB;
+}
+#viewInsideCol{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+#viewInsideRow{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid lightgray;
+}
 
 
 /* stock asset page */
-.stocksAssetDisplay{
-    max-height: 700px;
+.stocksAssetTableDisplay{
+    margin-top: 30px;
     overflow-y: auto;
+    height: 650px;
+    margin-left: 30px;
+    width: 80%;
+    background-color: white;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+    border-radius: 10px;
+}
+.assetStocksHeader{
+    background-color: #73C2FB;
 }
 #requestAssetBtn{
     width: 250px;
 }
 #cancelAsset{
     background-color: red;
+}
+#stocksCol{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+#stocksRow{
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 /* Request Asset Page */
@@ -1009,14 +1128,31 @@ table{
     background-color: red;
 }
 .reqTableRow{
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 .status-dropdown{
     border: transparent;
     background-color: transparent;
     width: 150px;
     text-align: center;
+}
+.assetTableRequestDisplay{
+    margin-top: 30px;
+    overflow-y: auto;
+    height: 700px;
+    margin-left: 30px;
+    width: 80%;
+    background-color: white;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+    border-radius: 10px;
+}
+.requestAssetDisplayHeader{
+    background-color: #73C2FB;
+}
+#reqAssetCol{
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 
@@ -1084,6 +1220,9 @@ table{
 }
 .rowHistory{
     padding-bottom: 30px;
+}
+#rowHistory{
+    width: 250px;
 }
 .assetActivtitiesTitle{
     margin-top: 50px;

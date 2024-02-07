@@ -169,7 +169,7 @@ if(isset($_POST['id'])) {
                     <table class = "supplierTable" >
 
                         <thead >
-                            <tr>
+                            <tr class = "supplierTableHeader">
                                 <th id = "suppCol">ID</th>
                                 <th id = "suppCol">COMPANY NAME</th>
                                 <th id = "suppCol">FIRST NAME</th>
@@ -197,14 +197,14 @@ if(isset($_POST['id'])) {
                                 while($row = $result->fetch_assoc()){
                                     echo "
                                     <tbody class = 'table-row'>
-                                        <td    id = 'laboratoryRow'>$row[sup_id]</td>
-                                         <td id = 'laboratoryRow' style = 'padding-left = 400px;'>$row[company_name]</td>
-                                        <td  id = 'laboratoryRow' style = 'padding-left = 400px;'>$row[sup_fname]</td>
-                                        <td   id = 'laboratoryRow'>$row[sup_lname]</td>
-                                        <td  id = 'laboratoryRow'>$row[contact_num]</td>
-                                        <td id = 'laboratoryRow'>$row[email]</td>
-                                        <td  id = 'laboratoryRow'>$row[address]</td>
-                                        <td style='border: none;' id = 'laboratoryRow'>
+                                        <td    id = 'supplierRow'>$row[sup_id]</td>
+                                         <td id = 'supplierRow' style = 'padding-left = 400px;'>$row[company_name]</td>
+                                        <td  id = 'supplierRow' style = 'padding-left = 400px;'>$row[sup_fname]</td>
+                                        <td   id = 'supplierRow'>$row[sup_lname]</td>
+                                        <td  id = 'supplierRow'>$row[contact_num]</td>
+                                        <td id = 'supplierRow'>$row[email]</td>
+                                        <td  id = 'supplierRow'>$row[address]</td>
+                                        <td  id = 'supplierRow'>
                                             <button data-supId = '$row[sup_id]' data-company = '$row[company_name]' data-supFname = '$row[sup_fname]' data-supLname = '$row[sup_lname]' data-supNumber = '$row[contact_num]' data-supEmail = '$row[email]' data-supAddress = '$row[address]' class = 'suppEditBtn'  id = 'suppEditBtn'>Edit</button>
                                             <button data-supId = '$row[sup_id]' class = 'deleteBtnSup' id = 'deleteBtnSup'>Delete</button>
                                         </td> 

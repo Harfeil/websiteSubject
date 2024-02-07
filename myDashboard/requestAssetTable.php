@@ -102,12 +102,9 @@ try {
             <div class="display">
                 <h2>REQUEST ASSETS</h2>
                 
-                    <div class="assetTableDisplay">
-
-                        <br><br><br>
+                    <div class="requestAssetTableDisplay">
                     
-
-                            <table class = "stocksAssetDisplay" id = "assetTable">
+                            <table class = "requestAssetTable" id = "">
 
                                 <thead>
                                     <tr>
@@ -186,31 +183,15 @@ try {
             
             statSelect.forEach(function(statupdate) {
                 statupdate.addEventListener('change', function () {
-                    let reqStatus = document.getElementById("reqAssetStat");
                     
                     if (event.target.classList.contains('status-dropdown')){
                         var selectedValue = event.target.value;
-                        // console.log(selectedValue);
                     }
-                        // console.log(selectedValue);
-                    
                         let idReq = this.getAttribute('data-id');
                         var xhr = new XMLHttpRequest();
                         xhr.open("POST", "", true);
                         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                        // console.log(idReq);
                         xhr.send("status="+selectedValue+"&&reqId="+idReq);
-
-                        xhr.onreadystatechange = function() {
-                            if (xhr.readyState === XMLHttpRequest.DONE) {
-                                if (xhr.status === 200) {
-                                    // console.log(xhr.responseText);
-                                    // location.reload();
-                                } else {
-                                    console.error('There was a problem with the request.');
-                                }
-                            }
-                        };
                 });
             });
         });

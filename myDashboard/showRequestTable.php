@@ -222,10 +222,7 @@ try {
                     </div>
                 
                     <div class="assetTableDisplay">
-
-                        <br><br><br>
-                    
-
+                        
                         <table class = "stocksAssetDisplay" id = "assetTable">
 
                             <thead>

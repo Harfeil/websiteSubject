@@ -166,15 +166,15 @@ $resultAdmin = $connection->query($sqlAdmin);
 
                 <div class="labTableContainer">
 
-                    <table  id = "myLaboratoryTable" >
+                    <table  class = "myLaboratoryTable" >
 
                         <thead >
-                            <tr>
-                                <th id = "actionEd">ID</th>
-                                <th id = "actionEd">LABORATORY NAME</th>
-                                <th id = "actionEd">ADMIN</th>
-                                <th id = "actionEd">DATE CREATED</th>
-                                <th id = "actionEd" class = "laboratoryAction">ACTIONS</th>
+                            <tr class = "laboratoryRowTable">
+                                <th id = "laboratoryCol">ID</th>
+                                <th id = "laboratoryCol">LABORATORY NAME</th>
+                                <th id = "laboratoryCol">ADMIN</th>
+                                <th id = "laboratoryCol">DATE CREATED</th>
+                                <th id = "laboratoryCol" class = "laboratoryCol">ACTIONS</th>
                             </tr>
                         </thead>
 
@@ -199,7 +199,7 @@ $resultAdmin = $connection->query($sqlAdmin);
                                             <td  class='laboratoryRow'  data-adminFName = '$row[fname]' data-adminLName = '$row[lname]' data-labid='$row[lab_id]' data-labname='$row[lab_name]'data-adminId='$row[admin_id]' id = 'laboratoryRow' style = 'padding-left = 400px;' >$row[lab_name]</td>
                                             <td class='laboratoryRow'   id = 'laboratoryRow'  data-adminFName = '$row[fname]' data-adminLName = '$row[lname]' >  $row[full_name]</td>
                                             <td  class='laboratoryRow'  data-labid='$row[lab_id]' data-labname='$row[lab_name]'data-adminId='$row[admin_id]' id = 'laboratoryRow' >$row[lab_date]</td>
-                                            <td class = 'buttons' style='border: none;' id = 'laboratoryRow'>
+                                            <td class = 'buttons' id = 'laboratoryRow'>
                                                <button data-labId='$row[lab_id]' data-labname='$row[lab_name]' data-labadmin='$row[full_name]' data-labadminId='$row[admin_id]'data-labdate='$row[lab_date]' class = 'editLabButton' id = 'editLabButton'>Edit</button>
                                                <button data-labId = '$row[lab_id]' id = 'deleteLabBtn' data-labname='$row[lab_name]' class = 'deleteLabBtn'>Delete</button>
                                             </td>

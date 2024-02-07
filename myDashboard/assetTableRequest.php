@@ -102,21 +102,18 @@ try {
             <div class="display">
                 <h2>REQUEST ASSETS</h2>
                 
-                    <div class="assetTableDisplay">
+                    <div class="assetTableRequestDisplay">
 
-                        <br><br><br>
-                    
-
-                            <table class = "stocksAssetDisplay" id = "assetTable">
+                            <table class = "assetTableRequest" id = "assetTable">
 
                                 <thead>
-                                    <tr>
-                                        <th id = "actionEd">ID</th>
-                                        <th id = "actionEd">NAME</th>
-                                        <th id = "actionEd">STATUS</th>
-                                        <th id = "actionEd">QUANTITY</th>
-                                        <th id = "actionEd">LABORATORY NAME</th>
-                                        <th id = "actionEd">REQUEST DATE</th>
+                                    <tr class = "requestAssetDisplayHeader">
+                                        <th id = "reqAssetCol">ID</th>
+                                        <th id = "reqAssetCol">NAME</th>
+                                        <th id = "reqAssetCol">STATUS</th>
+                                        <th id = "reqAssetCol">QUANTITY</th>
+                                        <th id = "reqAssetCol">LABORATORY NAME</th>
+                                        <th id = "reqAssetCol">REQUEST DATE</th>
                                         <!-- <th id = "actionEd">ACTIONS</th> -->
                                     </tr>
                                 </thead>

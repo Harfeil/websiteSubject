@@ -280,22 +280,17 @@ try {
 
                   
                 
-                    <div class="assetTableDisplay">
-
-                        <br><br><br>
-                    
-
-                        <table class = "stocksAssetDisplay" id = "assetTable">
-
+                    <div class="stocksAssetTableDisplay">
+                        <table class = "stocksTableDisplay" id = "">
                             <thead>
-                                <tr>
-                                    <th id = "actionEd">ID</th>
-                                    <th id = "actionEd">DEVICE TYPE</th>
-                                    <th id = "actionEd">BRAND</th>
-                                    <th id = "actionEd">STATUS</th>
-                                    <th id = "actionEd">STOCKS</th>
-                                    <th id = "actionEd">SUPPLIER NAME</th>
-                                    <th id = "actionEd">ACTIONS</th>
+                                <tr class = "assetStocksHeader">
+                                    <th id = "stocksCol">ID</th>
+                                    <th id = "stocksCol">DEVICE TYPE</th>
+                                    <th id = "stocksCol">BRAND</th>
+                                    <th id = "stocksCol">STATUS</th>
+                                    <th id = "stocksCol">STOCKS</th>
+                                    <th id = "stocksCol">SUPPLIER NAME</th>
+                                    <th id = "stocksCol">ACTIONS</th>
                                     <!-- <th id = "actionEd">ACTIONS</th> -->
                                 </tr>
                             </thead>
@@ -317,13 +312,13 @@ try {
                                     while($row = $result->fetch_assoc()){
                                         echo "
                                         <tbody data-assetAydi = '$row[asset_id]' data-assetBrand = '$row[asset_brand]' data-assetDesc = '$row[asset_desc]'  data-assetType = '$row[asset_type]' data-assetQuant = '$row[asset_quant]' data-assetStat = '$row[asset_status]'  data-supId = '$row[sup_id]'  class = 'table-row'>
-                                            <td id = 'laboratoryRow'>$row[asset_id]</td>
-                                            <td  id = 'laboratoryRow'>$row[asset_type]</td>
-                                            <td id = 'laboratoryRow' >$row[asset_brand]</td>
-                                            <td id = 'laboratoryRow'>$row[asset_status]</td>
-                                            <td  id = 'laboratoryRow'>$row[asset_quant]</td>
-                                            <td  id = 'laboratoryRow'>$row[full_name]</td>
-                                            <td  style='border: none;' id = 'laboratoryRow' class = 'actionStockBtn'>
+                                            <td id = 'stocksRow'>$row[asset_id]</td>
+                                            <td  id = 'stocksRow'>$row[asset_type]</td>
+                                            <td id = 'stocksRow' >$row[asset_brand]</td>
+                                            <td id = 'stocksRow'>$row[asset_status]</td>
+                                            <td  id = 'stocksRow'>$row[asset_quant]</td>
+                                            <td  id = 'stocksRow'>$row[full_name]</td>
+                                            <td  style='border: none;' id = 'stocksRow' class = 'actionStockBtn'>
                                                 <button data-desc = '$row[asset_desc]' data-brand = '$row[asset_brand]' data-assetAydi = '$row[asset_id]'  data-assetDesc = '$row[asset_desc]'  data-assetType = '$row[asset_type]' data-assetQuant = '$row[asset_quant]' data-assetStat = '$row[asset_status]'  data-supId = '$row[sup_id]'  id = 'assignButtonLab' class = 'assignButtonLab'>Assign To</button>
                                                 <button  data-assetType = '$row[asset_type]' data-assetQuant = '$row[asset_quant]' data-assetStat = '$row[asset_status]' data-assetAydi = '$row[asset_id]' data-assetSup = '$row[full_name]' data-assetBrand = '$row[asset_brand]' data-assetDesc = '$row[asset_desc]' data-supId = '$row[sup_id]' class = 'editButtonAsset' id = 'editAssetButton'  >Edit Asset</button>
                                                 <input data-asset = '$row[asset_id]' name = 'deleteAsset' class = 'deleteButton'  id = 'deleteButton' type = 'submit' value = 'Delete Asset'>

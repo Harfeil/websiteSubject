@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 02, 2024 at 02:51 PM
+-- Generation Time: Feb 07, 2024 at 07:11 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -45,8 +45,7 @@ INSERT INTO `admins` (`admin_id`, `admin_fname`, `admin_lname`, `admin_num`, `ad
 (80, 'Jimmy', 'Jimmy', 'Jimmy', 'Jimmy', '$2y$10$Mt75d9S6b6Y/cqEI.7f00uvhrLZUx9xT3ZQAavEr2/B', 'Admin'),
 (81, 'Janny', 'Janny', 'Janny', 'Janny', '$2y$10$he4qYYkLpA8gid2VWOSxtejSJlXGwxo1HBx62PYGVwf', 'Instructor'),
 (83, 'Janrey', 'Janrey', 'Janrey', 'Janrey', '$2y$10$O917sUa4O9GQa8urYVydruvIsh5W2tHBgsE8cp7eOB0', 'Admin'),
-(84, 'Lani', 'Lani', 'Lani', 'Lani', '$2y$10$uUPRUj0mwKAyTao2izV5nuDjWklBd00H0r4vTaZxxwO', 'Instructor'),
-(85, 'Hary', 'Hary', 'Hary', 'Hary', 'Hary', 'Admin');
+(84, 'Lani', 'Lani', 'Lani', 'Lani', '$2y$10$uUPRUj0mwKAyTao2izV5nuDjWklBd00H0r4vTaZxxwO', 'Instructor');
 
 -- --------------------------------------------------------
 
@@ -74,7 +73,7 @@ INSERT INTO `assets` (`asset_id`, `asset_brand`, `asset_type`, `asset_status`, `
 (314, '', 'Router', 'New', '', 0, 68),
 (315, '', 'Router', 'New', '', 0, 68),
 (316, '', 'Router', 'New', '', 0, 68),
-(317, '', 'Network Switch', 'New', '', 0, 68),
+(317, '', 'Network Switch', 'New', '', 2, 68),
 (318, '', 'Network Switch', 'New', '', 0, 68),
 (319, '', 'Network Switch', 'New', '', 0, 58),
 (320, '', 'Headset', 'New', '', 0, 68),
@@ -88,7 +87,8 @@ INSERT INTO `assets` (`asset_id`, `asset_brand`, `asset_type`, `asset_status`, `
 (328, '', 'Printer', 'New', '', 0, 65),
 (329, '', 'Printer', 'New', '', 0, 65),
 (330, 'Razers', 'Desktop Computer', 'New', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 0, 65),
-(332, 'asddd', 'Projector', 'New', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 6, 65);
+(332, 'asddd', 'Projector', 'New', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 6, 65),
+(334, 'Brand', 'Monitor', 'New', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 3, 58);
 
 -- --------------------------------------------------------
 
@@ -111,7 +111,8 @@ INSERT INTO `laboratories` (`lab_id`, `lab_name`, `lab_date`, `admin_id`) VALUES
 (402, 'Laboratory123333', '242024-12-02', 84),
 (403, 'laboratory123sssss', '0022-12-12', 84),
 (404, '4th Floor Laboratorys', '2024-12-20', 84),
-(420, 'LaboratoryName', '2024-05-02', 81);
+(420, 'LaboratoryName', '2024-05-02', 81),
+(421, 'Master Lab', '2024-02-15', 84);
 
 -- --------------------------------------------------------
 
@@ -133,14 +134,14 @@ CREATE TABLE `request_asset` (
 --
 
 INSERT INTO `request_asset` (`req_id`, `req_name`, `req_status`, `quantity_asset`, `lab_id`, `req_date`) VALUES
-(174, 'Mouse', '', 4, 403, 'Feb-02-2024'),
+(174, 'Mouse', 'Processing', 4, 403, 'Feb-02-2024'),
 (175, 'Keyboard', 'Processing', 6, 404, 'Feb-02-2024'),
-(176, 'asd', 'Pending', 1, 402, 'Feb-02-2024'),
-(177, 'asd', 'Pending', 1, 402, 'Feb-02-2024'),
-(178, 'asd', 'Pending', 1, 402, 'Feb-02-2024'),
+(176, 'asd', 'Cancelled', 1, 402, 'Feb-02-2024'),
+(177, 'asd', 'Processing', 1, 402, 'Feb-02-2024'),
+(178, 'asd', 'Processing', 1, 402, 'Feb-02-2024'),
 (179, 'asd', 'Received', 1, 402, 'Feb-02-2024'),
-(180, 'asd', 'Pending', 1, 402, 'Feb-02-2024'),
-(181, 'asd', 'Cancelled', 1, 402, 'Feb-02-2024');
+(180, 'asd', 'Cancelled', 1, 402, 'Feb-02-2024'),
+(181, 'asd', 'Received', 1, 402, 'Feb-02-2024');
 
 -- --------------------------------------------------------
 
@@ -164,8 +165,8 @@ CREATE TABLE `supplier` (
 
 INSERT INTO `supplier` (`sup_id`, `company_name`, `sup_fname`, `sup_lname`, `contact_num`, `email`, `address`) VALUES
 (58, 'asdds', 'asdd', 'asd', '09432.213417', 'asd@gmail.com', 'Abuno Kry-Ass Tungkop'),
-(65, 'Janrey', 'Janrey', 'Janrey', '097495132321', 'Janrey@gmail.com', 'Abuno Kry-Ass Tungkop'),
-(68, 'JANJANs', 'JANJANs', 'JANJANs', 'JANJANs', 'JANJANs@gmail.com', 'JANJANs');
+(65, 'Janrey', 'Janrey', 'Janrey', '097495132321s', 'Janrey@gmail.com', 'Abuno Kry-Ass Tungkop'),
+(68, 'JANJANs', 'JANJANs', 'JANJANs', '0945412134534', 'JANJANs@gmail.com', 'JANJANs');
 
 -- --------------------------------------------------------
 
@@ -187,12 +188,14 @@ CREATE TABLE `transaction_table` (
 --
 
 INSERT INTO `transaction_table` (`trans_id`, `asset_id`, `lab_id`, `sup_id`, `asset_stat`, `trans_date`) VALUES
-(206, 312, 402, 58, 'New', 'Feb-02-2024'),
-(207, 312, 402, 58, 'Maintenance', 'Feb-02-2024'),
+(206, 312, 404, 58, 'New', 'Feb-02-2024'),
+(207, 312, 421, 58, 'Maintenance', 'Feb-02-2024'),
 (208, 312, 402, 58, 'Maintenance', 'Feb-02-2024'),
-(209, 312, 402, 58, 'New', 'Feb-02-2024'),
-(210, 312, 402, 58, 'New', 'Feb-02-2024'),
-(211, 312, 402, 58, 'New', 'Feb-02-2024');
+(209, 312, 420, 58, 'Maintenance', 'Feb-02-2024'),
+(210, 312, 404, 58, 'New', 'Feb-02-2024'),
+(211, 312, 421, 58, 'New', 'Feb-02-2024'),
+(212, 317, 404, 68, 'New', 'Feb-07-2024'),
+(213, 317, 421, 68, 'New', 'Feb-07-2024');
 
 --
 -- Indexes for dumped tables
@@ -248,19 +251,19 @@ ALTER TABLE `transaction_table`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `admin_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `admin_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT for table `assets`
 --
 ALTER TABLE `assets`
-  MODIFY `asset_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=334;
+  MODIFY `asset_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=335;
 
 --
 -- AUTO_INCREMENT for table `laboratories`
 --
 ALTER TABLE `laboratories`
-  MODIFY `lab_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=421;
+  MODIFY `lab_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=423;
 
 --
 -- AUTO_INCREMENT for table `request_asset`
@@ -272,13 +275,13 @@ ALTER TABLE `request_asset`
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `sup_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `sup_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `transaction_table`
 --
 ALTER TABLE `transaction_table`
-  MODIFY `trans_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=212;
+  MODIFY `trans_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=214;
 
 --
 -- Constraints for dumped tables

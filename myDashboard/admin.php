@@ -103,68 +103,17 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     <h2>LIST OF ADMINS</h2>
                 </div>
 
-                <div id="popupForm" class="popup-formAdmin">
-                    
-                    
-                    <div class = "adminFormContainer">
-                        
-                        <h2 id = "titleFormAdmin">Add Admin Form</h2><br>
-                                
-                        <form action="" method = "post" class = "formAdmin" id = "myFormSup">
-                                <input type="text" placeholder = "typepost" id = "typePostAdmin" name = "postType">
-                                <div class = "adminIdDisplayDiv" id = "adminIdDisplayDiv">
-                                    <label for="">ID</label>
-                                    <input type="text" id = "adminIdDisplay" name = "adminId">
-                                </div>
-                                <div class = "fillFirstRow">
-                                    <label >First Name</label><br>
-                                    <input type="text"  name = "admin_fname" id = "supFName"value = "<?php echo $admin_fname; ?>"><br><br>
-                                    <label >Contact Number</label><br>
-                                    <input type="text" id = "supNumber"value = "<?php echo $admin_num; ?>" name = "admin_num">
-                                </div>
-                                <div class = "fillSecondRow">
-                                    <label >Last Name</label>
-                                    <input type="text" id = "supLName" name = "admin_lname" value = "<?php echo $admin_lname; ?>"><br><br>
-                                    <label >Email</label>
-                                    <input type="email" id = "supEmail" value = "<?php echo $admin_email; ?>" name = "admin_email">
-                                </div>
-                                
-                            <?php
-
-                            if(!empty($successMessage)){
-                            echo"
-
-                                <div class = 'alert alert - warning alert-dismissible fade show ' role = 'alert'>
-
-                                    <strong>$successMessage</strong>
-                                    <button type = 'button' class = 'btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-
-                                </div>
-
-                            ";
-                            }
-                                
-
-                            ?>
-                            <br>
-                                    <button type = "submit" id = "submitAdmin">Submit</button>
-                                    <button id = "cancelSuppBut" onclick = "cancelAdmin()">Cancel</button><br>
-                        </form>
-                            
-                    </div>
-                </div>
-
                 <div class="adminTableDisplay">
 
-                    <table class = "adminTableDisplay" >
+                    <table class = "adminMainTable" >
 
-                        <thead >
-                            <tr>
-                                <th id = "actionEd">ID</th>
-                                <th id = "actionEd">FIRST NAME</th>
-                                <th id = "actionEd">LAST NAME</th>
-                                <th id = "actionEd">CONTACT NUMBER</th>
-                                <th id = "actionEd">EMAIL</th>
+                        <thead class = "adminHeaderTable">
+                            <tr >
+                                <th id = "adminCol">ID</th>
+                                <th id = "adminCol">FIRST NAME</th>
+                                <th id = "adminCol">LAST NAME</th>
+                                <th id = "adminCol">CONTACT NUMBER</th>
+                                <th id = "adminCol">EMAIL</th>
                             </tr>
                         </thead>
 
@@ -211,76 +160,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
         let editable = true;
 
-        document.addEventListener('DOMContentLoaded', function() {
-            var editAdminBtn = document.querySelectorAll('.editAdminBtn');
-            var deleteAdminBtn = document.querySelectorAll('.deleleteAdminBtn');
-            let allButtons = document.querySelectorAll("#editAdminBtn, #deleleteAdminBtn,  #addButton");
-            let titleOfForm = document.getElementById("titleFormAdmin");
-            let AdminFNameInput = document.getElementById("supFName");
-            let AdminLNameInput = document.getElementById("supLName");
-            let contact_numInput = document.getElementById("supNumber");
-            let emailInput = document.getElementById("supEmail");
-            let idInput = document.getElementById("adminIdDisplay");
-            let idDisplayDiv = document.getElementById("adminIdDisplayDiv");
-            let typePost = document.getElementById("typePostAdmin");
-            editAdminBtn.forEach(function(row) {
-                row.addEventListener('click', function() {
-                    popupForm.style.display = "block";
-                    let adminFname = this.getAttribute('data-adminFname');
-                    let adminLname = this.getAttribute('data-adminLname');
-                    let contact_num = this.getAttribute('data-adminNumber');
-                    let email = this.getAttribute('data-adminEmail');
-                    let adminId = this.getAttribute('data-adminId');
-                    AdminFNameInput.value = adminFname;
-                    AdminLNameInput.value = adminLname;
-                    contact_numInput.value = contact_num;
-                    emailInput.value = email;
-                    idInput.value = adminId;
-                    idDisplayDiv.style.display = "block";
-                    if(editable === true){
-                        allButtons.forEach(function(button) {
-                            button.disabled = true;
-                        });
-                        titleOfForm.textContent = "Update Admin Form";
-                        AdminFNameInput.name = "admin_fnameUpdate";
-                        AdminLNameInput.name = "admin_lnameUpdate";
-                        contact_numInput.name = "admin_numUpdate";
-                        emailInput.name = "admin_emailUpdate";
-                        typePost.value = "update";
-                        editable = false;
-                    }
-                });
-            });
-            deleteAdminBtn.forEach(function(row) {
-                row.addEventListener('click', function() {
-                    let id = this.getAttribute('data-adminId');
-                    
-                var confirmation = confirm("Confirm Delete?");
-                    if (confirmation) {
-                        var xhr = new XMLHttpRequest();
-                        xhr.open("POST", "", true);
-                        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                        xhr.send("deleteAdmin=" + id);
-
-                        xhr.onreadystatechange = function() {
-                            if (xhr.readyState === XMLHttpRequest.DONE) {
-                                if (xhr.status === 200) {
-                                    console.log(xhr.responseText);
-                                    var deletedElement = document.getElementById("item_" + id);
-                                    location.reload();
-                                    if (deletedElement) {
-                                        deletedElement.remove();
-                                    }
-                                } else {
-                                    console.error('There was a problem with the request.');
-                                }
-                            }
-                        };
-                    }
-                });
-            });
-        });
-
         // Toggle Sidebar
         var sideBarToggle = true;
 
@@ -314,52 +193,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             }
             
         });
-
-        function cancelAdmin(){
-            let operation = document.getElementById("typePostAdmin");
-            operation.value = "";
-            popupForm.style.display = "none";
-        }
-
-        const addButton = document.getElementById('addButton');
-        const popupForm = document.getElementById('popupForm');
-
-        addButton.addEventListener('click', function() {
-            popupForm.style.display = 'block';
-            let allButtons = document.querySelectorAll("#editAdminBtn, #deleleteAdminBtn,  #addButton");
-            let titleOfForm = document.getElementById("titleFormAdmin");
-            let AdminFNameInput = document.getElementById("supFName");
-            let AdminLNameInput = document.getElementById("supLName");
-            let contact_numInput = document.getElementById("supNumber");
-            let emailInput = document.getElementById("supEmail");
-            let idInput = document.getElementById("adminIdDisplay");
-            let idDisplayDiv = document.getElementById("adminIdDisplayDiv");
-            let typePost = document.getElementById("typePostAdmin");
-            AdminFNameInput.value = "";
-            AdminLNameInput.value = "";
-            contact_numInput.value = "";
-            emailInput.value = "";
-            idDisplayDiv.style.display = "none";
-            allButtons.forEach(function(button) {
-                button.disabled = true;
-            });
-            titleOfForm.textContent = "Add Admin Form";
-            AdminFNameInput.name = "admin_fname";
-            AdminLNameInput.name = "admin_lname";
-            contact_numInput.name = "admin_num";
-            emailInput.name = "admin_email";
-            typePost.value = "add";
-        });
-
-        document.getElementById('myFormSup').addEventListener('submit', function(event) {
-        const formData = new FormData(event.target);
-        for (const pair of formData.entries()) {
-            console.log(`${pair[0]}: ${pair[1]}`);
-        }
-        // After handling form data, you can hide the form
-        popupForm.style.display = 'none';
-        });
-
     </script>
      
 </body>
